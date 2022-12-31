@@ -23,6 +23,12 @@
       ],
       "@manga-love-api/core/*": [
         "libs/core/src/*"
+      ],
+      "@manga-love-api/database": [
+        "libs/database/src"
+      ],
+      "@manga-love-api/database/*": [
+        "libs/database/src/*"
       ]
     }
   }

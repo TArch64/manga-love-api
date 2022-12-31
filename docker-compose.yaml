@@ -11,28 +11,30 @@ x-api-common: &api_common
       - love
     env_file:
       - ./.env
-#    depends_on:
-#      - db
+    depends_on:
+      - postgres
 
 services:
   gateway:
     <<: *api_common
     container_name: manga_love_api
     command: npm run start:dev gateway
+    ports:
+      - '3000:3000'
 
-#  db:
-#    container_name: manga_love_psql
-#    image: postgres:15-alpine
-#    volumes:
-#      - data_psql:/var/lib/postgresql/data
-#    networks:
-#      - love
-#    env_file:
-#      - ./.env
+  postgres:
+    container_name: manga_love_postgres
+    image: postgres:15-alpine
+    volumes:
+      - data_psql:/var/lib/postgresql/data
+    networks:
+      - love
+    env_file:
+      - ./.env
 
-#volumes:
-#  data_psql:
-#    driver: local
+volumes:
+  data_psql:
+    driver: local
 
 networks:
   love:

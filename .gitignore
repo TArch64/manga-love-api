@@ -4,3 +4,4 @@
 /.idea
 .vscode/*
 .env
+prisma/migrations/migration_lock.toml
