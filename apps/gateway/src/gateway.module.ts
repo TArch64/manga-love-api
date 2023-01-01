@@ -1,27 +1,28 @@
-import { Controller, Get, Inject, Module } from '@nestjs/common';
+import * as process from 'process';
+import * as path from 'path';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from '@manga-love-api/database';
-import { ClientProxy } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
-import { Microservices, MicroservicesModule } from './microservices.config';
-
-@Controller()
-class ApiController {
-    @Inject(Microservices.AUTH)
-    private authMicroservice: ClientProxy;
-
-    @Get()
-    public get(): Observable<string> {
-        return this.authMicroservice.send('hello', null);
-    }
-}
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { MicroservicesModule } from './microservices.config';
+import { UsersResolver } from './users';
 
 @Module({
     imports: [
-        DatabaseModule,
-        ConfigModule.forRoot({ isGlobal: true }),
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
+            autoSchemaFile: path.resolve(process.cwd(), 'schema.graphql'),
+            sortSchema: true,
+        }),
         MicroservicesModule,
+        DatabaseModule,
     ],
-    controllers: [ApiController],
+    providers: [
+        UsersResolver,
+    ],
 })
 export class GatewayModule {}
