@@ -4,6 +4,7 @@ x-api-common: &api_common
     image: manga_love_api
     build: .
     stdin_open: true
+    restart: always
     volumes:
       - .:/app
       - ./node_modules:/app/node_modules
@@ -13,17 +14,22 @@ x-api-common: &api_common
       - ./.env
     depends_on:
       - postgres
+      - nats
 
 services:
   gateway:
     <<: *api_common
-    container_name: manga_love_api
     command: npm run start:dev gateway
     ports:
       - '3000:3000'
+    links:
+      - auth
+
+  auth:
+    <<: *api_common
+    command: npm run start:dev auth
 
   postgres:
-    container_name: manga_love_postgres
     image: postgres:15-alpine
     volumes:
       - data_psql:/var/lib/postgresql/data
@@ -31,6 +37,11 @@ services:
       - love
     env_file:
       - ./.env
+
+  nats:
+    image: nats:2.9-alpine
+    networks:
+      - love
 
 volumes:
   data_psql:
