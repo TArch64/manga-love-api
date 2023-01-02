@@ -1,9 +1,9 @@
 import { DynamicModule, InjectionToken } from '@nestjs/common';
-import { ClientsModule, Transport, ClientsProviderAsyncOptions } from '@nestjs/microservices';
+import { ClientsModule, Transport, ClientsProviderAsyncOptions, RedisOptions } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 import { MICROSERVICES } from './microservices';
 
-type MicroserviceKey = keyof typeof MICROSERVICES;
+export type MicroserviceKey = keyof typeof MICROSERVICES;
 type MicroserviceTokens<ServiceKey extends MicroserviceKey> = Partial<Record<ServiceKey, InjectionToken>>;
 
 export interface MicroservicesProvider<ServiceKey extends MicroserviceKey> {
@@ -36,11 +36,12 @@ export class MicroservicesFactoryModule {
         const clients = Object.entries(tokens).map(([key, token]): ClientsProviderAsyncOptions => ({
             name: token as symbol,
             inject: [ConfigService],
-            useFactory: (config) => ({
-                transport: Transport.NATS,
+            useFactory: (config: ConfigService): RedisOptions => ({
+                transport: Transport.REDIS,
                 options: {
-                    servers: [config.getOrThrow('NATS_URL')],
-                    queue: `${key}_QUEUE`,
+                    host: config.getOrThrow<string>('REDIS_HOST'),
+                    port: config.getOrThrow<number>('REDIS_PORT', { infer: true }),
+                    name: `${key}_MICROSERVICE`,
                 },
             }),
         }));

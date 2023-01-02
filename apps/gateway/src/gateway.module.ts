@@ -1,5 +1,5 @@
-import * as process from 'process';
-import * as path from 'path';
+import process from 'process';
+import path from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';

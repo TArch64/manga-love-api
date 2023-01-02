@@ -45,6 +45,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
+    },
+    "mailer": {
+      "type": "application",
+      "root": "apps/mailer",
+      "entryFile": "main",
+      "sourceRoot": "apps/mailer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/mailer/tsconfig.app.json"
+      }
+    },
+    "bull-admin": {
+      "type": "application",
+      "root": "apps/bull-admin",
+      "entryFile": "main",
+      "sourceRoot": "apps/bull-admin/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/bull-admin/tsconfig.app.json"
+      }
     }
   }
 }

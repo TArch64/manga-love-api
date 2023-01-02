@@ -1,10 +1,11 @@
+import process from 'process';
 import { NestFactory } from '@nestjs/core';
-import { NatsOptions, Transport } from '@nestjs/microservices';
+import { RedisOptions, Transport } from '@nestjs/microservices';
 import { INestMicroservice, Logger, Type } from '@nestjs/common';
-import { MICROSERVICES } from './microservices';
+import { MicroserviceKey } from './microservices.module';
 
 export interface MicroserviceStarterOptions {
-    key: keyof typeof MICROSERVICES;
+    key: MicroserviceKey;
     AppModule: Type<unknown>;
 }
 
@@ -27,11 +28,12 @@ export class MicroserviceStarter {
     }
 
     private createApp(): Promise<INestMicroservice> {
-        return NestFactory.createMicroservice<NatsOptions>(this.options.AppModule, {
-            transport: Transport.NATS,
+        return NestFactory.createMicroservice<RedisOptions>(this.options.AppModule, {
+            transport: Transport.REDIS,
             options: {
-                servers: [process.env.NATS_URL],
-                queue: `${this.options.key}_QUEUE`,
+                host: process.env.REDIS_HOST,
+                port: Number(process.env.REDIS_PORT),
+                name: `${this.options.key}_MICROSERVICE`,
             },
         });
     }

@@ -14,7 +14,7 @@ x-api-common: &api_common
       - ./.env
     depends_on:
       - postgres
-      - nats
+      - redis
 
 services:
   gateway:
@@ -29,6 +29,16 @@ services:
     <<: *api_common
     command: npm run start:dev auth
 
+  mailer:
+    <<: *api_common
+    command: npm run start:dev mailer
+
+  bull-admin:
+    <<: *api_common
+    command: npm run start:dev bull-admin
+    ports:
+      - '3001:3000'
+
   postgres:
     image: postgres:15-alpine
     volumes:
@@ -38,13 +48,21 @@ services:
     env_file:
       - ./.env
 
-  nats:
-    image: nats:2.9-alpine
+  redis:
+    container_name: manga_love_redis
+    image: redis:7.0.7-alpine
+    volumes:
+      - data_redis:/data
     networks:
       - love
+    env_file:
+      - ./.env
+
 
 volumes:
   data_psql:
+    driver: local
+  data_redis:
     driver: local
 
 networks:
