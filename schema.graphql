@@ -2,8 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+directive @constraint(contains: String, endsWith: String, exclusiveMax: Float, exclusiveMin: Float, format: String, max: Float, maxItems: Int, maxLength: Int, min: Float, minItems: Int, minLength: Int, multipleOf: Float, notContains: String, pattern: String, startsWith: String, uniqueTypeName: String) on ARGUMENT_DEFINITION | FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+type AuthObject {
+  token: String!
+}
+
+type Mutation {
+  authSignUp(input: SignUpInput!): AuthObject!
+}
+
 type Query {
   users: [UserObject!]!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  username: String!
 }
 
 type UserObject {

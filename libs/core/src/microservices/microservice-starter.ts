@@ -14,16 +14,19 @@ export class MicroserviceStarter {
     }
 
     private readonly logger = new Logger(MicroserviceStarter.name);
+    private app: INestMicroservice;
 
-    constructor(private readonly options: MicroserviceStarterOptions) {}
+    constructor(
+        private readonly options: MicroserviceStarterOptions,
+    ) {}
 
-    protected async run(): Promise<void> {
-        const app = await this.createApp();
-        await app.listen();
+    private async run(): Promise<void> {
+        this.app = await this.createApp();
+        await this.app.listen();
         this.reportStarted();
     }
 
-    protected createApp(): Promise<INestMicroservice> {
+    private createApp(): Promise<INestMicroservice> {
         return NestFactory.createMicroservice<NatsOptions>(this.options.AppModule, {
             transport: Transport.NATS,
             options: {
@@ -33,7 +36,7 @@ export class MicroserviceStarter {
         });
     }
 
-    protected reportStarted(): void {
+    private reportStarted(): void {
         this.logger.log(`${this.options.key} Microservice started`);
     }
 }
