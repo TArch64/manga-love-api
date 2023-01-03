@@ -8,8 +8,22 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username String @db.VarChar(255) @unique
-  email    String @db.VarChar(255) @unique
+  id       String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username String       @unique @db.VarChar(255)
+  email    String       @unique @db.VarChar(255)
   password String
+  actions  UserAction[]
+}
+
+model UserAction {
+  id     String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type   UserActionType
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String         @db.Uuid
+
+  @@unique([userId, type])
+}
+
+enum UserActionType {
+  VERIFY_EMAIL
 }

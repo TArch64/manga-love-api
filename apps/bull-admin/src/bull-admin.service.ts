@@ -5,14 +5,14 @@ import { createBullBoard } from '@bull-board/api';
 import { getQueueToken } from '@nestjs/bull';
 import { RequestHandler } from 'express';
 import expressBasicAuth from 'express-basic-auth';
-import { ConfigService } from '@nestjs/config';
+import { EnvironmentService } from '@manga-love-api/core/environment';
 import { Queues } from './queues.config';
 
 const ENDPOINT = '/bull-admin';
 
 export class BullAdminService {
     @Inject()
-    private configService: ConfigService;
+    private environment: EnvironmentService;
 
     public apply(app: INestApplication): void {
         const serverAdapter = this.buildAdapter();
@@ -41,8 +41,7 @@ export class BullAdminService {
     }
 
     private buildAuth(): RequestHandler {
-        const user = this.configService.getOrThrow('BULL_ADMIN_USER');
-        const password = this.configService.getOrThrow('BULL_ADMIN_PASSWORD');
+        const { user, password } = this.environment.bullAdmin;
 
         return expressBasicAuth({
             users: { [user]: password },

@@ -1,6 +1,6 @@
 import { DynamicModule } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
-import { ConfigService } from '@nestjs/config';
+import { EnvironmentService } from '../environment';
 
 const QUEUES = {
     MAILER: true,
@@ -29,13 +29,8 @@ export class QueuesFactoryModule {
 
             queueModules: [
                 BullModule.forRootAsync({
-                    inject: [ConfigService],
-                    useFactory: (config: ConfigService) => ({
-                        redis: {
-                            host: config.getOrThrow<string>('REDIS_HOST'),
-                            port: config.getOrThrow<number>('REDIS_PORT', { infer: true }),
-                        },
-                    }),
+                    inject: [EnvironmentService],
+                    useFactory: ({ redis }: EnvironmentService) => ({ redis }),
                 }),
                 BullModule.registerQueue(...modules),
             ],

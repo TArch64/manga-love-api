@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '@manga-love-api/database';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
+import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
 import { AuthController } from './auth.controller';
 import { SignUpValidator } from './validators';
-import { SignUpService, TokenService } from './services';
+import { SignUpService, TokenService, VerifyEmailService } from './services';
+import { MicroservicesModule } from './microservices.config';
 
 @Module({
     imports: [
         DatabaseModule,
-        ConfigModule.forRoot({
-            isGlobal: true,
-        }),
+        EnvironmentModule,
+        MicroservicesModule,
         JwtModule.registerAsync({
-            inject: [ConfigService],
-            useFactory: (config: ConfigService) => ({
-                secret: config.getOrThrow('JWT_SECRET'),
-                signOptions: { expiresIn: config.getOrThrow('JWT_EXPIRATION') },
+            inject: [EnvironmentService],
+            useFactory: ({ jwt }: EnvironmentService) => ({
+                secret: jwt.secret,
+                signOptions: { expiresIn: jwt.expiration },
             }),
         }),
     ],
@@ -27,6 +27,7 @@ import { SignUpService, TokenService } from './services';
         SignUpService,
         SignUpValidator,
         TokenService,
+        VerifyEmailService,
     ],
 })
 export class AuthModule {}

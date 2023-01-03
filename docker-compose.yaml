@@ -8,6 +8,7 @@ x-api-common: &api_common
     volumes:
       - .:/app
       - ./node_modules:/app/node_modules
+      - ./tmp:/app/tmp
     networks:
       - love
     env_file:
@@ -28,6 +29,8 @@ services:
   auth:
     <<: *api_common
     command: npm run start:dev auth
+    links:
+      - mailer
 
   mailer:
     <<: *api_common
@@ -40,7 +43,7 @@ services:
       - '3001:3000'
 
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15.1-alpine
     volumes:
       - data_psql:/var/lib/postgresql/data
     networks:

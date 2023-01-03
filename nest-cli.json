@@ -5,7 +5,11 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": false,
-    "tsConfigPath": "apps/manga-love-api/tsconfig.app.json"
+    "tsConfigPath": "tsconfig.json",
+    "assets": [
+      "**/*.mjml"
+    ],
+    "watchAssets": true
   },
   "monorepo": true,
   "root": "apps/manga-love-api",

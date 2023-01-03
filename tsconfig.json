@@ -1,42 +1,48 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "declaration": true,
-        "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true,
-        "target": "es2017",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "baseUrl": "./",
-        "incremental": true,
-        "skipLibCheck": true,
-        "strictNullChecks": false,
-        "noImplicitAny": false,
-        "strictBindCallApply": false,
-        "forceConsistentCasingInFileNames": false,
-        "noFallthroughCasesInSwitch": false,
-        "esModuleInterop": true,
-        "paths": {
-            "@manga-love-api/core": [
-                "libs/core/src"
-            ],
-            "@manga-love-api/core/*": [
-                "libs/core/src/*"
-            ],
-            "@manga-love-api/database": [
-                "libs/database/src"
-            ],
-            "@manga-love-api/database/*": [
-                "libs/database/src/*"
-            ],
-            "@manga-love-api/auth": [
-                "apps/auth/src"
-            ],
-            "@manga-love-api/auth/*": [
-                "apps/auth/src/*"
-            ]
-        }
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "paths": {
+      "@manga-love-api/core": [
+        "libs/core/src"
+      ],
+      "@manga-love-api/core/*": [
+        "libs/core/src/*"
+      ],
+      "@manga-love-api/database": [
+        "libs/database/src"
+      ],
+      "@manga-love-api/database/*": [
+        "libs/database/src/*"
+      ],
+      "@manga-love-api/auth": [
+        "apps/auth/src"
+      ],
+      "@manga-love-api/auth/*": [
+        "apps/auth/src/*"
+      ],
+      "@manga-love-api/mailer": [
+        "apps/mailer/src"
+      ],
+      "@manga-love-api/mailer/*": [
+        "apps/mailer/src/*"
+      ]
     }
+  }
 }

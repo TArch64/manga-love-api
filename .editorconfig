@@ -1,2 +1,5 @@
-[*.{js,ts,json}]
+[*.{js,ts}]
 indent_size = 4
+
+[*.json]
+indent_size = 2

@@ -3,6 +3,7 @@ import { hash } from 'argon2';
 import { PrismaService } from '@manga-love-api/database';
 import { IAuthResponse, ISignUpRequest } from '../types';
 import { TokenService } from './token.service';
+import { VerifyEmailService } from './verify-email.service';
 
 @Injectable()
 export class SignUpService {
@@ -12,6 +13,9 @@ export class SignUpService {
     @Inject()
     private tokenService: TokenService;
 
+    @Inject()
+    private verifyEmailService: VerifyEmailService;
+
     public async signUp(payload: ISignUpRequest): Promise<IAuthResponse> {
         const user = await this.prisma.user.create({
             data: {
@@ -20,6 +24,7 @@ export class SignUpService {
                 password: await hash(payload.password),
             },
         });
+        await this.verifyEmailService.verify(user);
         return { token: await this.tokenService.encode({ userId: user.id }) };
     }
 }

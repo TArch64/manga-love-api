@@ -5,7 +5,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start:dev": "nest start --watch --preserveWatchOutput",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "console": "ts-node ./libs/database/src/console"
   },
   "dependencies": {
     "@bull-board/api": "^4.10.0",
@@ -23,19 +24,27 @@
     "@nestjs/schematics": "^9.0.4",
     "@prisma/client": "^4.8.0",
     "@types/bull": "^4.10.0",
+    "@types/ejs": "^3.1.1",
     "@types/express": "^4.17.15",
+    "@types/mjml": "^4.7.0",
     "@types/node": "18.11.18",
+    "@types/nodemailer": "^6.4.7",
+    "@types/uuid": "^9.0.0",
     "apollo-server-express": "^3.11.1",
     "argon2": "^0.30.2",
     "bull": "^4.10.2",
+    "ejs": "^3.1.8",
     "express-basic-auth": "^1.2.1",
     "graphql": "^16.6.0",
     "graphql-constraint-directive": "^4.1.2",
     "ioredis": "^5.2.4",
+    "mjml": "^4.13.0",
+    "nodemailer": "^6.8.0",
     "prisma": "^4.8.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",

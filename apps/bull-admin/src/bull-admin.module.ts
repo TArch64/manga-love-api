@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { EnvironmentModule } from '@manga-love-api/core/environment';
 import { BullAdminService } from './bull-admin.service';
 import { queueModules } from './queues.config';
 
 @Module({
     imports: [
-        ConfigModule.forRoot({ isGlobal: true }),
+        EnvironmentModule,
         ...queueModules,
     ],
     providers: [
