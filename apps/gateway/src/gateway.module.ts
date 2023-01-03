@@ -4,14 +4,13 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { constraintDirective } from 'graphql-constraint-directive';
 import { constraintDirectiveTypeDefsObj } from 'graphql-constraint-directive/lib/type-defs';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloDriver } from '@nestjs/apollo';
 import { DatabaseModule } from '@manga-love-api/database';
 import { Request, Response } from 'express';
 import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { MicroservicesModule } from './microservices.config';
 import { UsersResolver } from './users';
-import { AuthResolver } from './auth';
+import { AuthController, AuthResolver } from './auth';
 
 interface GraphqlContext {
     req: Request;
@@ -38,13 +37,12 @@ interface GraphqlContext {
                 context: ({ req, res }): GraphqlContext => ({ req, res }),
             }),
         }),
-        ServeStaticModule.forRoot({
-            rootPath: path.resolve(process.cwd(), 'static'),
-            serveRoot: '/static',
-        }),
         EnvironmentModule,
         MicroservicesModule,
         DatabaseModule,
+    ],
+    controllers: [
+        AuthController,
     ],
     providers: [
         AuthResolver,

@@ -1,5 +1,6 @@
-import { readFile } from 'fs/promises';
-import { resolve } from 'path';
+import fs from 'fs/promises';
+import path from 'path';
+import process from 'process';
 import { Injectable } from '@nestjs/common';
 import { render } from 'ejs';
 import mjml2html from 'mjml';
@@ -19,10 +20,10 @@ export class TemplateRenderService {
         if (this.templateCache.has(name)) {
             return this.templateCache.get(name);
         }
-        return readFile(this.buildTemplatePath(name), 'utf8');
+        return fs.readFile(this.buildTemplatePath(name), 'utf8');
     }
 
     private buildTemplatePath(name: string): string {
-        return resolve('./dist/apps/mailer/views', `${name}.mjml`);
+        return path.resolve(process.cwd(), './dist/apps/mailer/views', `${name}.mjml`);
     }
 }
