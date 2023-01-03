@@ -1,7 +1,7 @@
 import { firstValueFrom } from 'rxjs';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { PrismaService, User, UserActionType } from '@manga-love-api/database';
+import { PrismaService, User, UserAction, UserActionType, UserEmailStatus } from '@manga-love-api/database';
 import { SuccessResponse } from '@manga-love-api/core/success-response';
 import { EnvironmentService } from '@manga-love-api/core/environment';
 import { MailConfig } from '@manga-love-api/mailer/types';
@@ -18,14 +18,17 @@ export class VerifyEmailService {
     @Inject()
     private environment: EnvironmentService;
 
-    public async verify(user: User): Promise<void> {
+    public async send(user: User): Promise<void> {
         const action = await this.prisma.userAction.create({
             data: {
                 userId: user.id,
                 type: UserActionType.VERIFY_EMAIL,
             },
         });
+        await this.sendEmail(user, action);
+    }
 
+    private async sendEmail(user: User, action: UserAction): Promise<void> {
         await firstValueFrom(this.mailerMicroservice.send<SuccessResponse, MailConfig>('send', {
             email: user.email,
             subject: 'Verify Email',
@@ -44,5 +47,23 @@ export class VerifyEmailService {
                 },
             ],
         }));
+    }
+
+    public async verify(code: string): Promise<void> {
+        const action = await this.prisma.userAction.findUnique({
+            where: { id: code },
+        });
+
+        if (!action) return;
+
+        await this.prisma.$transaction([
+            this.prisma.userAction.delete({
+                where: { id: action.id },
+            }),
+            this.prisma.user.update({
+                where: { id: action.userId },
+                data: { emailStatus: UserEmailStatus.VERIFIED },
+            }),
+        ]);
     }
 }

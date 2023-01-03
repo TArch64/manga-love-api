@@ -8,11 +8,17 @@ datasource db {
 }
 
 model User {
-  id       String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username String       @unique @db.VarChar(255)
-  email    String       @unique @db.VarChar(255)
-  password String
-  actions  UserAction[]
+  id          String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username    String          @unique @db.VarChar(255)
+  email       String          @unique @db.VarChar(255)
+  emailStatus UserEmailStatus @default(UNVERIFIED)
+  password    String
+  actions     UserAction[]
+}
+
+enum UserEmailStatus {
+  VERIFIED
+  UNVERIFIED
 }
 
 model UserAction {

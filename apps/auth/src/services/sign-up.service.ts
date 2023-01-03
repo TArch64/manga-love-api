@@ -24,7 +24,7 @@ export class SignUpService {
                 password: await hash(payload.password),
             },
         });
-        await this.verifyEmailService.verify(user);
+        await this.verifyEmailService.send(user);
         return { token: await this.tokenService.encode({ userId: user.id }) };
     }
 }
