@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MangaLove ~ Email Verified</title>
+    <link rel="stylesheet" href="/static/auth/verify-email.css">
+    <link rel="shortcut icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body class="page">
+    <h1 class="page__heading"><%= heading %></h1>
+    <div class="page__illustration-container">
+        <img class="page__illustration" src="/static/auth/illustration.svg" alt="Illustration">
+        <svg class="page__illustration-status">
+            <use href="/static/auth/icons.svg#<%= status %>"></use>
+        </svg>
+    </div>
+    <p class="page__description"><%= description %></p>
+</body>
+</html>

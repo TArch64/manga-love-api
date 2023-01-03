@@ -1,0 +1,57 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito+Sans:wght@400&display=swap");
+
+.page {
+    padding: 92px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    --font-serif: 'Merriweather';
+    --font-sans: 'Nunito Sans';
+    --font-bold: 700;
+    --font-main: 400;
+}
+
+.page__heading {
+    margin-top: 0;
+    margin-bottom: 32px;
+    font-family: var(--font-serif);
+    font-weight: var(--font-bold);
+    font-size: 36px;
+    line-height: 1;
+    text-align: center;
+}
+
+.page__illustration-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.page__illustration {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.page__illustration-status {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.page__description {
+    font-weight: var(--font-main);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #606060;
+    margin: 0;
+}

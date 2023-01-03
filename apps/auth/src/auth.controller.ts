@@ -1,6 +1,6 @@
 import { Controller, Inject } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { SuccessResponse } from '@manga-love-api/core/success-response';
+import { IStatusResponse } from '@manga-love-api/core/status-response';
 import { IAuthResponse, ISignUpRequest } from './types';
 import { SignUpService, VerifyEmailService } from './services';
 import { SignUpValidator } from './validators';
@@ -23,8 +23,7 @@ export class AuthController {
     }
 
     @MessagePattern('verify-email')
-    public async verifyEmail(code: string): Promise<SuccessResponse> {
-        await this.verifyEmailService.verify(code);
-        return { success: true };
+    public async verifyEmail(code: string): Promise<IStatusResponse> {
+        return { success: await this.verifyEmailService.verify(code) };
     }
 }
