@@ -8,6 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DatabaseModule } from '@manga-love-api/database';
 import { Request, Response } from 'express';
 import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { MicroservicesModule } from './microservices.config';
 import { UsersResolver } from './users';
 import { AuthResolver } from './auth';
@@ -19,7 +20,6 @@ interface GraphqlContext {
 
 @Module({
     imports: [
-        EnvironmentModule,
         GraphQLModule.forRootAsync({
             driver: ApolloDriver,
             inject: [EnvironmentService],
@@ -38,6 +38,11 @@ interface GraphqlContext {
                 context: ({ req, res }): GraphqlContext => ({ req, res }),
             }),
         }),
+        ServeStaticModule.forRoot({
+            rootPath: path.resolve(process.cwd(), 'static'),
+            serveRoot: '/static',
+        }),
+        EnvironmentModule,
         MicroservicesModule,
         DatabaseModule,
     ],

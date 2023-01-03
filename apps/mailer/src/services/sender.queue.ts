@@ -1,9 +1,12 @@
+import path from 'path';
+import process from 'process';
 import { Inject } from '@nestjs/common';
 import { Transporter, SentMessageInfo, SendMailOptions } from 'nodemailer';
+import { Attachment } from 'nodemailer/lib/mailer';
 import { Process, Processor } from '@nestjs/bull';
 import { Job } from 'bull';
 import { EnvironmentService } from '@manga-love-api/core/environment';
-import { MailConfig } from '../types';
+import { MailAttachment, MailConfig } from '../types';
 import { Queues } from '../queues.config';
 import { TemplateRenderService } from './template-render.service';
 
@@ -30,14 +33,20 @@ export class SenderQueue {
         });
     }
 
-    private async buildOptions({ template, email, subject }: MailConfig): Promise<SendMailOptions>  {
-        const html = await this.templateRender.render(template.name, template.data);
-
+    private async buildOptions(config: MailConfig): Promise<SendMailOptions>  {
         return {
             from: `MangaLove <${this.environment.mailer.user}>`,
-            to: email,
-            subject: subject,
-            html,
+            to: config.email,
+            subject: config.subject,
+            html: await this.templateRender.render(config.template.name, config.template.data),
+            attachments: this.buildAttachments(config.attachments || []),
         };
+    }
+
+    private buildAttachments(attachments: MailAttachment[]): Attachment[] {
+        return attachments.map((attachment) => ({
+            ...attachment,
+            path: path.resolve(process.cwd(), attachment.path),
+        }));
     }
 }

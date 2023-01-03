@@ -21,7 +21,7 @@ export class VerifyEmailService {
     public async verify(user: User): Promise<void> {
         const action = await this.prisma.userAction.create({
             data: {
-                user: { connect: { id: user.id } },
+                userId: user.id,
                 type: UserActionType.VERIFY_EMAIL,
             },
         });
@@ -32,9 +32,17 @@ export class VerifyEmailService {
             template: {
                 name: 'auth/verify-email',
                 data: {
-                    verificationUrl: `${this.environment.frontendUrl}/auth/verify-email`,
+                    username: user.username,
+                    verificationUrl: `${this.environment.frontendUrl}/auth/verify-email?code=${action.id}`,
                 },
             },
+            attachments: [
+                {
+                    cid: 'illustration',
+                    filename: 'illustration.png',
+                    path: 'static/email/pending.png',
+                },
+            ],
         }));
     }
 }

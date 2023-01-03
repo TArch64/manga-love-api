@@ -1,1 +1,1 @@
-export { MailConfig, TemplateConfig } from './mail.config';
+export * from './mail.config';

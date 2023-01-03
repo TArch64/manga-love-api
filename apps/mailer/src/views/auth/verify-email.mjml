@@ -1,12 +1,56 @@
 <mjml>
+    <mj-head>
+        <mj-style>
+            .confirm-button a {
+                box-shadow: 0 10px 20px rgba(48, 48, 48, 0.25);
+            }
+
+            @media only screen and (max-width:480px) {
+                .confirm-button table { width: 100% !important; }
+            }
+        </mj-style>
+    </mj-head>
     <mj-body>
         <mj-section>
             <mj-column>
-                <mj-text>
-                    <h1>Verify your email</h1>
+                <mj-text align="center" font-family="Merriweather">
+                    <h1>Hi, <%= username %></h1>
                 </mj-text>
-                <mj-button href="<%= verificationUrl %>">
-                    Verify Email
+                <mj-spacer height="15px" />
+                <mj-image
+                        align="center"
+                        src="cid:illustration"
+                        fluid-on-mobile="true"
+                        width="400px"
+                />
+                <mj-spacer height="15px" />
+                <mj-text
+                        font-family="Lato"
+                        font-weight="400"
+                        font-size="18px"
+                        line-height="27px"
+                        align="center"
+                        color="#606060"
+                >
+                    <p>
+                        You can confirm your email by clicking on the button bellow.
+                        If you did not registered, please ignore this letter.
+                    </p>
+                </mj-text>
+                <mj-spacer height="15px" />
+                <mj-button
+                        href="<%= verificationUrl %>"
+                        font-family="Lato"
+                        font-size="18px"
+                        line-height="24px"
+                        text-align="center"
+                        background-color="#242424"
+                        inner-padding="16px 40px"
+                        css-class="confirm-button"
+                        width="300px"
+                        border-radius="8px"
+                >
+                    Confirm my Email
                 </mj-button>
             </mj-column>
         </mj-section>

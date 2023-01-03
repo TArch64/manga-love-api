@@ -13,6 +13,15 @@
   },
   "monorepo": true,
   "root": "apps/manga-love-api",
+  "generateOptions": {
+    "spec": {
+      "lib": false,
+      "app": false,
+      "application": false,
+      "library": false,
+      "sub-app": false
+    }
+  },
   "projects": {
     "gateway": {
       "type": "application",
