@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
 import { AuthController } from './auth.controller';
 import { SignUpValidator } from './validators';
-import { AuthenticationService, SignUpService, TokenService, VerifyEmailService } from './services';
+import { AuthenticationService, SignInService, SignUpService, TokenService, VerifyEmailService } from './services';
 import { MicroservicesModule } from './microservices.config';
 
 @Module({
@@ -29,6 +29,7 @@ import { MicroservicesModule } from './microservices.config';
         TokenService,
         VerifyEmailService,
         AuthenticationService,
+        SignInService,
     ],
 })
 export class AuthModule {}

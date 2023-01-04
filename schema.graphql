@@ -25,12 +25,18 @@ input CreateWorkInput {
 }
 
 type Mutation {
+  authSignIn(input: SignInInput!): AuthObject!
   authSignUp(input: SignUpInput!): AuthObject!
   workCreate(input: CreateWorkInput!): SuccessObject!
 }
 
 type Query {
   currentUser: UserObject!
+}
+
+input SignInInput {
+  password: String!
+  username: String!
 }
 
 input SignUpInput {
