@@ -8,10 +8,10 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { DatabaseModule } from '@manga-love-api/database';
 import { Request, Response } from 'express';
 import { EnvironmentModule } from '@manga-love-api/core/environment';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD } from '@nestjs/core';
 import { MicroservicesModule } from './microservices.config';
 import { UsersResolver } from './users';
-import { AuthController, AuthInterceptor, AuthResolver } from './auth';
+import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorksResolver } from './works';
 
 interface GraphqlContext {
@@ -47,8 +47,8 @@ interface GraphqlContext {
         UsersResolver,
         WorksResolver,
         {
-            provide: APP_INTERCEPTOR,
-            useClass: AuthInterceptor,
+            provide: APP_GUARD,
+            useClass: AuthGuard,
         },
     ],
 })

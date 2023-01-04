@@ -1,4 +1,5 @@
 export { AuthResolver } from './auth.resolver';
 export { AuthController } from './auth.controller';
-export { AuthInterceptor } from './auth.interceptor';
-export { QLCurrentUser } from './current-user.decorator';
+export { AuthGuard } from './auth.guard';
+export { CurrentUser } from './current-user.decorator';
+export { AuthenticatedOnly } from './authenticated-only.decorator';
