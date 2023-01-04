@@ -4,6 +4,7 @@ import { PrismaService } from '@manga-love-api/database';
 import { IAuthResponse, ISignUpRequest } from '../types';
 import { TokenService } from './token.service';
 import { VerifyEmailService } from './verify-email.service';
+import { IAuthenticationPayload } from './authentication.service';
 
 @Injectable()
 export class SignUpService {
@@ -25,6 +26,8 @@ export class SignUpService {
             },
         });
         await this.verifyEmailService.send(user);
-        return { token: await this.tokenService.encode({ userId: user.id }) };
+
+        const tokenPayload: IAuthenticationPayload = { userId: user.id };
+        return { token: await this.tokenService.encode(tokenPayload) };
     }
 }

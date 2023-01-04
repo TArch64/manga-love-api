@@ -7,4 +7,7 @@ export class UserObject {
 
     @Field()
     public username: string;
+
+    @Field()
+    public email: string;
 }

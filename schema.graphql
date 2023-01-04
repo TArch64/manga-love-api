@@ -30,7 +30,7 @@ type Mutation {
 }
 
 type Query {
-  users: [UserObject!]!
+  currentUser: UserObject!
 }
 
 input SignUpInput {
@@ -47,6 +47,7 @@ type SuccessObject {
 scalar Upload
 
 type UserObject {
+  email: String!
   id: String!
   username: String!
 }
