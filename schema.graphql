@@ -8,8 +8,25 @@ type AuthObject {
   token: String!
 }
 
+input CreateIllustrationInput {
+  file: Upload!
+}
+
+input CreateWorkCategoryInput {
+  textEn: String!
+  textUa: String!
+}
+
+input CreateWorkInput {
+  categories: [CreateWorkCategoryInput!]!
+  illustration: CreateIllustrationInput!
+  titleEn: String!
+  titleUa: String!
+}
+
 type Mutation {
   authSignUp(input: SignUpInput!): AuthObject!
+  workCreate(input: CreateWorkInput!): SuccessObject!
 }
 
 type Query {
@@ -21,6 +38,13 @@ input SignUpInput {
   password: String!
   username: String!
 }
+
+type SuccessObject {
+  success: Boolean!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type UserObject {
   id: String!

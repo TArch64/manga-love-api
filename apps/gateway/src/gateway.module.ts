@@ -7,10 +7,11 @@ import { constraintDirectiveTypeDefsObj } from 'graphql-constraint-directive/lib
 import { ApolloDriver } from '@nestjs/apollo';
 import { DatabaseModule } from '@manga-love-api/database';
 import { Request, Response } from 'express';
-import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
+import { EnvironmentModule } from '@manga-love-api/core/environment';
 import { MicroservicesModule } from './microservices.config';
 import { UsersResolver } from './users';
 import { AuthController, AuthResolver } from './auth';
+import { WorksResolver } from './works';
 
 interface GraphqlContext {
     req: Request;
@@ -21,18 +22,14 @@ interface GraphqlContext {
     imports: [
         GraphQLModule.forRootAsync({
             driver: ApolloDriver,
-            inject: [EnvironmentService],
-            useFactory: (environment: EnvironmentService) => ({
+            useFactory: () => ({
                 autoSchemaFile: path.resolve(process.cwd(), 'schema.graphql'),
                 sortSchema: true,
                 transformSchema: constraintDirective(),
                 buildSchemaOptions: {
                     directives: [constraintDirectiveTypeDefsObj],
                 },
-                playground: environment.isDevelopment ? {
-                    settings: { 'editor.theme': 'light' },
-                    endpoint: '/graphql',
-                } : false,
+                playground: false,
                 introspection: true,
                 context: ({ req, res }): GraphqlContext => ({ req, res }),
             }),
@@ -47,6 +44,7 @@ interface GraphqlContext {
     providers: [
         AuthResolver,
         UsersResolver,
+        WorksResolver,
     ],
 })
 export class GatewayModule {}

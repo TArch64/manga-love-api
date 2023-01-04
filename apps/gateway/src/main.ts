@@ -1,6 +1,7 @@
 import path from 'path';
 import process from 'process';
 import { NestFactory } from '@nestjs/core';
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 import { PrismaService } from '@manga-love-api/database';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { GatewayModule } from './gateway.module';
@@ -14,6 +15,8 @@ async function bootstrap(): Promise<void> {
     app.useStaticAssets(path.resolve(process.cwd(), 'static'), { prefix: '/static' });
     app.setBaseViewsDir(path.resolve(process.cwd(), './dist/apps/gateway/views'));
     app.setViewEngine('ejs');
+
+    app.use(graphqlUploadExpress());
 
     await app.listen(3000, '0.0.0.0');
 }
