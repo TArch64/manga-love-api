@@ -1,0 +1,874 @@
+[
+  {
+    "textEn": "Middle School",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cycling",
+    "textUa": ""
+  },
+  {
+    "textEn": "Elementary School",
+    "textUa": ""
+  },
+  {
+    "textEn": "Mermaid",
+    "textUa": ""
+  },
+  {
+    "textEn": "Android",
+    "textUa": ""
+  },
+  {
+    "textEn": "All Girls School",
+    "textUa": ""
+  },
+  {
+    "textEn": "Vampire",
+    "textUa": ""
+  },
+  {
+    "textEn": "Wrestling",
+    "textUa": ""
+  },
+  {
+    "textEn": "Samurai",
+    "textUa": ""
+  },
+  {
+    "textEn": "Elf",
+    "textUa": ""
+  },
+  {
+    "textEn": "Pirate",
+    "textUa": ""
+  },
+  {
+    "textEn": "Bishounen",
+    "textUa": ""
+  },
+  {
+    "textEn": "Tentacle",
+    "textUa": ""
+  },
+  {
+    "textEn": "Boxing",
+    "textUa": ""
+  },
+  {
+    "textEn": "Musical Band",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cooking",
+    "textUa": ""
+  },
+  {
+    "textEn": "Air Force",
+    "textUa": ""
+  },
+  {
+    "textEn": "Bounty Hunter",
+    "textUa": ""
+  },
+  {
+    "textEn": "High School",
+    "textUa": ""
+  },
+  {
+    "textEn": "Delinquent",
+    "textUa": ""
+  },
+  {
+    "textEn": "Maid",
+    "textUa": ""
+  },
+  {
+    "textEn": "Magic",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cyborg",
+    "textUa": ""
+  },
+  {
+    "textEn": "Alien",
+    "textUa": ""
+  },
+  {
+    "textEn": "Zombie",
+    "textUa": ""
+  },
+  {
+    "textEn": "Robot",
+    "textUa": ""
+  },
+  {
+    "textEn": "Martial Arts",
+    "textUa": ""
+  },
+  {
+    "textEn": "Angel",
+    "textUa": ""
+  },
+  {
+    "textEn": "Waitress",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dragon",
+    "textUa": ""
+  },
+  {
+    "textEn": "Assassin",
+    "textUa": ""
+  },
+  {
+    "textEn": "Idol",
+    "textUa": ""
+  },
+  {
+    "textEn": "Nurse",
+    "textUa": ""
+  },
+  {
+    "textEn": "Magical Girl",
+    "textUa": ""
+  },
+  {
+    "textEn": "Ghost",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cross Dressing",
+    "textUa": ""
+  },
+  {
+    "textEn": "Loli",
+    "textUa": ""
+  },
+  {
+    "textEn": "Deity",
+    "textUa": ""
+  },
+  {
+    "textEn": "Ninja",
+    "textUa": ""
+  },
+  {
+    "textEn": "Office Lady",
+    "textUa": ""
+  },
+  {
+    "textEn": "Gunfights",
+    "textUa": ""
+  },
+  {
+    "textEn": "Battle Royale",
+    "textUa": ""
+  },
+  {
+    "textEn": "Swordplay",
+    "textUa": ""
+  },
+  {
+    "textEn": "Super Power",
+    "textUa": ""
+  },
+  {
+    "textEn": "Present",
+    "textUa": ""
+  },
+  {
+    "textEn": "Past",
+    "textUa": ""
+  },
+  {
+    "textEn": "Future",
+    "textUa": ""
+  },
+  {
+    "textEn": "Space",
+    "textUa": ""
+  },
+  {
+    "textEn": "Fantasy World",
+    "textUa": ""
+  },
+  {
+    "textEn": "Desert",
+    "textUa": ""
+  },
+  {
+    "textEn": "Earth",
+    "textUa": ""
+  },
+  {
+    "textEn": "Island",
+    "textUa": ""
+  },
+  {
+    "textEn": "Countryside",
+    "textUa": ""
+  },
+  {
+    "textEn": "Human Enhancement",
+    "textUa": ""
+  },
+  {
+    "textEn": "Time Travel",
+    "textUa": ""
+  },
+  {
+    "textEn": "Mecha",
+    "textUa": ""
+  },
+  {
+    "textEn": "Space Travel",
+    "textUa": ""
+  },
+  {
+    "textEn": "Alternative Past",
+    "textUa": ""
+  },
+  {
+    "textEn": "Historical",
+    "textUa": ""
+  },
+  {
+    "textEn": "Alternative Present",
+    "textUa": ""
+  },
+  {
+    "textEn": "Power Suit",
+    "textUa": ""
+  },
+  {
+    "textEn": "Transforming Craft",
+    "textUa": ""
+  },
+  {
+    "textEn": "Piloted Robot",
+    "textUa": ""
+  },
+  {
+    "textEn": "Demon",
+    "textUa": ""
+  },
+  {
+    "textEn": "High Fantasy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Contemporary Fantasy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dark Fantasy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Absurdist Humour",
+    "textUa": ""
+  },
+  {
+    "textEn": "Super Deformed",
+    "textUa": ""
+  },
+  {
+    "textEn": "Slapstick",
+    "textUa": ""
+  },
+  {
+    "textEn": "Breaking The Fourth Wall",
+    "textUa": ""
+  },
+  {
+    "textEn": "Parody",
+    "textUa": ""
+  },
+  {
+    "textEn": "Satire",
+    "textUa": ""
+  },
+  {
+    "textEn": "Other Planet",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shipboard",
+    "textUa": ""
+  },
+  {
+    "textEn": "University",
+    "textUa": ""
+  },
+  {
+    "textEn": "School Clubs",
+    "textUa": ""
+  },
+  {
+    "textEn": "Japan",
+    "textUa": ""
+  },
+  {
+    "textEn": "Korea",
+    "textUa": ""
+  },
+  {
+    "textEn": "China",
+    "textUa": ""
+  },
+  {
+    "textEn": "Russia",
+    "textUa": ""
+  },
+  {
+    "textEn": "Tokyo",
+    "textUa": ""
+  },
+  {
+    "textEn": "Kyoto",
+    "textUa": ""
+  },
+  {
+    "textEn": "New York",
+    "textUa": ""
+  },
+  {
+    "textEn": "Heian Period",
+    "textUa": ""
+  },
+  {
+    "textEn": "Victorian Period",
+    "textUa": ""
+  },
+  {
+    "textEn": "Sengoku Period",
+    "textUa": ""
+  },
+  {
+    "textEn": "Tokugawa Period",
+    "textUa": ""
+  },
+  {
+    "textEn": "World War II",
+    "textUa": ""
+  },
+  {
+    "textEn": "Bakumatsu   Meiji Period",
+    "textUa": ""
+  },
+  {
+    "textEn": "Voyeurism",
+    "textUa": ""
+  },
+  {
+    "textEn": "Netorare",
+    "textUa": ""
+  },
+  {
+    "textEn": "Ahegao",
+    "textUa": ""
+  },
+  {
+    "textEn": "Violence",
+    "textUa": ""
+  },
+  {
+    "textEn": "Combat",
+    "textUa": ""
+  },
+  {
+    "textEn": "Tennis",
+    "textUa": ""
+  },
+  {
+    "textEn": "Volleyball",
+    "textUa": ""
+  },
+  {
+    "textEn": "Motorsport",
+    "textUa": ""
+  },
+  {
+    "textEn": "Basketball",
+    "textUa": ""
+  },
+  {
+    "textEn": "Mars",
+    "textUa": ""
+  },
+  {
+    "textEn": "Street Racing",
+    "textUa": ""
+  },
+  {
+    "textEn": "Formula Racing",
+    "textUa": ""
+  },
+  {
+    "textEn": "Violent Retribution For Accidental Infringement",
+    "textUa": ""
+  },
+  {
+    "textEn": "Feudal Warfare",
+    "textUa": ""
+  },
+  {
+    "textEn": "Humanoid Alien",
+    "textUa": ""
+  },
+  {
+    "textEn": "Parasite",
+    "textUa": ""
+  },
+  {
+    "textEn": "Slow When It Comes To Love",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shoujo Ai",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shounen Ai",
+    "textUa": ""
+  },
+  {
+    "textEn": "Sudden Girlfriend Appearance",
+    "textUa": ""
+  },
+  {
+    "textEn": "Unrequited Love",
+    "textUa": ""
+  },
+  {
+    "textEn": "Love Polygon",
+    "textUa": ""
+  },
+  {
+    "textEn": "Plot Continuity",
+    "textUa": ""
+  },
+  {
+    "textEn": "Stereotypes",
+    "textUa": ""
+  },
+  {
+    "textEn": "Reverse Harem",
+    "textUa": ""
+  },
+  {
+    "textEn": "Performance",
+    "textUa": ""
+  },
+  {
+    "textEn": "Music",
+    "textUa": ""
+  },
+  {
+    "textEn": "Baseball",
+    "textUa": ""
+  },
+  {
+    "textEn": "France",
+    "textUa": ""
+  },
+  {
+    "textEn": "United Kingdom",
+    "textUa": ""
+  },
+  {
+    "textEn": "Italy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Germany",
+    "textUa": ""
+  },
+  {
+    "textEn": "United States",
+    "textUa": ""
+  },
+  {
+    "textEn": "Europe",
+    "textUa": ""
+  },
+  {
+    "textEn": "Americas",
+    "textUa": ""
+  },
+  {
+    "textEn": "Middle East",
+    "textUa": ""
+  },
+  {
+    "textEn": "Asia",
+    "textUa": ""
+  },
+  {
+    "textEn": "Africa",
+    "textUa": ""
+  },
+  {
+    "textEn": "Floating Island",
+    "textUa": ""
+  },
+  {
+    "textEn": "Parallel Universe",
+    "textUa": ""
+  },
+  {
+    "textEn": "Virtual Reality",
+    "textUa": ""
+  },
+  {
+    "textEn": "Mafia",
+    "textUa": ""
+  },
+  {
+    "textEn": "Action",
+    "textUa": ""
+  },
+  {
+    "textEn": "Angst",
+    "textUa": ""
+  },
+  {
+    "textEn": "Blackmail",
+    "textUa": ""
+  },
+  {
+    "textEn": "Science Fiction",
+    "textUa": ""
+  },
+  {
+    "textEn": "Fantasy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Adventure",
+    "textUa": ""
+  },
+  {
+    "textEn": "Horror",
+    "textUa": ""
+  },
+  {
+    "textEn": "Thriller",
+    "textUa": ""
+  },
+  {
+    "textEn": "Comedy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Henshin",
+    "textUa": ""
+  },
+  {
+    "textEn": "Ecchi",
+    "textUa": ""
+  },
+  {
+    "textEn": "Anthropomorphism",
+    "textUa": ""
+  },
+  {
+    "textEn": "Romance",
+    "textUa": ""
+  },
+  {
+    "textEn": "Harem",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cyberpunk",
+    "textUa": ""
+  },
+  {
+    "textEn": "Friendship",
+    "textUa": ""
+  },
+  {
+    "textEn": "Proxy Battles",
+    "textUa": ""
+  },
+  {
+    "textEn": "Slice of Life",
+    "textUa": ""
+  },
+  {
+    "textEn": "Slavery",
+    "textUa": ""
+  },
+  {
+    "textEn": "Politics",
+    "textUa": ""
+  },
+  {
+    "textEn": "School Life",
+    "textUa": ""
+  },
+  {
+    "textEn": "Steampunk",
+    "textUa": ""
+  },
+  {
+    "textEn": "Anti War",
+    "textUa": ""
+  },
+  {
+    "textEn": "Crime",
+    "textUa": ""
+  },
+  {
+    "textEn": "Disaster",
+    "textUa": ""
+  },
+  {
+    "textEn": "Religion",
+    "textUa": ""
+  },
+  {
+    "textEn": "Revenge",
+    "textUa": ""
+  },
+  {
+    "textEn": "Conspiracy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Sports",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dystopia",
+    "textUa": ""
+  },
+  {
+    "textEn": "The Arts",
+    "textUa": ""
+  },
+  {
+    "textEn": "Law And Order",
+    "textUa": ""
+  },
+  {
+    "textEn": "Drama",
+    "textUa": ""
+  },
+  {
+    "textEn": "Coming Of Age",
+    "textUa": ""
+  },
+  {
+    "textEn": "Housewives",
+    "textUa": ""
+  },
+  {
+    "textEn": "Female Teacher",
+    "textUa": ""
+  },
+  {
+    "textEn": "Female Student",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dark Skinned Girl",
+    "textUa": ""
+  },
+  {
+    "textEn": "Cops",
+    "textUa": ""
+  },
+  {
+    "textEn": "Special Squads",
+    "textUa": ""
+  },
+  {
+    "textEn": "Genetic Modification",
+    "textUa": ""
+  },
+  {
+    "textEn": "Parental Abandonment",
+    "textUa": ""
+  },
+  {
+    "textEn": "Post Apocalypse",
+    "textUa": ""
+  },
+  {
+    "textEn": "War",
+    "textUa": ""
+  },
+  {
+    "textEn": "Rotten World",
+    "textUa": ""
+  },
+  {
+    "textEn": "Detective",
+    "textUa": ""
+  },
+  {
+    "textEn": "Super Robot",
+    "textUa": ""
+  },
+  {
+    "textEn": "Working Life",
+    "textUa": ""
+  },
+  {
+    "textEn": "Superhero",
+    "textUa": ""
+  },
+  {
+    "textEn": "Buddhism",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shinsengumi",
+    "textUa": ""
+  },
+  {
+    "textEn": "Military",
+    "textUa": ""
+  },
+  {
+    "textEn": "Space Battles",
+    "textUa": ""
+  },
+  {
+    "textEn": "Drifting",
+    "textUa": ""
+  },
+  {
+    "textEn": "Three Kingdoms",
+    "textUa": ""
+  },
+  {
+    "textEn": "Summer",
+    "textUa": ""
+  },
+  {
+    "textEn": "Tone Changes",
+    "textUa": ""
+  },
+  {
+    "textEn": "Epidemic",
+    "textUa": ""
+  },
+  {
+    "textEn": "Space Opera",
+    "textUa": ""
+  },
+  {
+    "textEn": "Card Games",
+    "textUa": ""
+  },
+  {
+    "textEn": "Thievery",
+    "textUa": ""
+  },
+  {
+    "textEn": "Navy",
+    "textUa": ""
+  },
+  {
+    "textEn": "Student Government",
+    "textUa": ""
+  },
+  {
+    "textEn": "Juujin",
+    "textUa": ""
+  },
+  {
+    "textEn": "Robot Helper",
+    "textUa": ""
+  },
+  {
+    "textEn": "Soccer",
+    "textUa": ""
+  },
+  {
+    "textEn": "Content Indicators",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dynamic",
+    "textUa": ""
+  },
+  {
+    "textEn": "Elements",
+    "textUa": ""
+  },
+  {
+    "textEn": "Setting",
+    "textUa": ""
+  },
+  {
+    "textEn": "Themes",
+    "textUa": ""
+  },
+  {
+    "textEn": "Psychological",
+    "textUa": ""
+  },
+  {
+    "textEn": "Supernatural",
+    "textUa": ""
+  },
+  {
+    "textEn": "Mystery",
+    "textUa": ""
+  },
+  {
+    "textEn": "Gender Bender",
+    "textUa": ""
+  },
+  {
+    "textEn": "Yaoi",
+    "textUa": ""
+  },
+  {
+    "textEn": "Anime Influenced",
+    "textUa": ""
+  },
+  {
+    "textEn": "Dementia",
+    "textUa": ""
+  },
+  {
+    "textEn": "Kids",
+    "textUa": ""
+  },
+  {
+    "textEn": "Family",
+    "textUa": ""
+  },
+  {
+    "textEn": "Target Demographics",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shoujo",
+    "textUa": ""
+  },
+  {
+    "textEn": "Shounen",
+    "textUa": ""
+  },
+  {
+    "textEn": "Seinen",
+    "textUa": ""
+  },
+  {
+    "textEn": "Josei",
+    "textUa": ""
+  },
+  {
+    "textEn": "Isekai",
+    "textUa": ""
+  }
+]

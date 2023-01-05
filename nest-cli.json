@@ -77,6 +77,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/bull-admin/tsconfig.app.json"
       }
+    },
+    "work": {
+      "type": "application",
+      "root": "apps/work",
+      "entryFile": "main",
+      "sourceRoot": "apps/work/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/work/tsconfig.app.json"
+      }
+    },
+    "uploader": {
+      "type": "application",
+      "root": "apps/uploader",
+      "entryFile": "main",
+      "sourceRoot": "apps/uploader/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/uploader/tsconfig.app.json"
+      }
     }
   }
 }

@@ -25,6 +25,7 @@ services:
       - '3000:3000'
     links:
       - auth
+      - work
 
   auth:
     <<: *api_common
@@ -35,6 +36,10 @@ services:
   mailer:
     <<: *api_common
     command: npm run start:dev mailer
+
+  work:
+    <<: *api_common
+    command: npm run start:dev work
 
   bull-admin:
     <<: *api_common

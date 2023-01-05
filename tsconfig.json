@@ -18,6 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "paths": {
       "@manga-love-api/core": [
         "libs/core/src"
@@ -42,6 +43,18 @@
       ],
       "@manga-love-api/mailer/*": [
         "apps/mailer/src/*"
+      ],
+      "@manga-love-api/work": [
+        "apps/work/src"
+      ],
+      "@manga-love-api/work/*": [
+        "apps/work/src/*"
+      ],
+      "@manga-love-api/uploader": [
+        "apps/uploader/src"
+      ],
+      "@manga-love-api/uploader/*": [
+        "apps/uploader/src/*"
       ]
     }
   }

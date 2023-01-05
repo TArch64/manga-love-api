@@ -1,37 +1,37 @@
 module.exports = {
     extends: [
         'eslint:recommended',
-        'plugin:@typescript-eslint/recommended'
+        'plugin:@typescript-eslint/recommended',
     ],
     plugins: [
         'import',
-        '@typescript-eslint'
+        '@typescript-eslint',
     ],
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 8,
         sourceType: 'module',
-        allowImportExportEverywhere: true
+        allowImportExportEverywhere: true,
     },
     settings: {
         'import/resolver': {
             node: {
-                extensions: ['.ts']
-            }
-        }
+                extensions: ['.ts'],
+            },
+        },
     },
     env: {
-        node: true
+        node: true,
     },
     rules: {
         'no-extra-bind': 'error',
         'no-cond-assign': [
             'error',
-            'always'
+            'always',
         ],
         'eqeqeq': [
             'warn',
-            'smart'
+            'smart',
         ],
         'block-scoped-var': 'error',
         'guard-for-in': 'error',
@@ -50,61 +50,61 @@ module.exports = {
             {
                 'blankLine': 'always',
                 'prev': 'import',
-                'next': '*'
+                'next': '*',
             },
             {
                 'blankLine': 'any',
                 'prev': 'import',
-                'next': 'import'
-            }
+                'next': 'import',
+            },
         ],
         'comma-dangle': 'off',
         '@typescript-eslint/comma-dangle': [
             'error',
-            'always-multiline'
+            'always-multiline',
         ],
         'quotes': 'off',
         '@typescript-eslint/quotes': [
             'error',
-            'single'
+            'single',
         ],
         'semi': 'off',
         '@typescript-eslint/semi': [
             'error',
-            'always'
+            'always',
         ],
         'curly': [
             'error',
-            'multi-line'
+            'multi-line',
         ],
         'lines-between-class-members': 'off',
         '@typescript-eslint/lines-between-class-members': [
             'error',
             'always',
             {
-                'exceptAfterSingleLine': true
-            }
+                'exceptAfterSingleLine': true,
+            },
         ],
         'padded-blocks': [
             'error',
-            'never'
+            'never',
         ],
         'object-curly-spacing': 'off',
         '@typescript-eslint/object-curly-spacing': [
             'error',
-            'always'
+            'always',
         ],
         'array-bracket-spacing': [
             'error',
-            'never'
+            'never',
         ],
         'comma-spacing': 'off',
         '@typescript-eslint/comma-spacing': [
             'error',
             {
                 'before': false,
-                'after': true
-            }
+                'after': true,
+            },
         ],
         'space-infix-ops': 'off',
         '@typescript-eslint/space-infix-ops': 'error',
@@ -113,32 +113,32 @@ module.exports = {
             'error',
             {
                 'before': true,
-                'after': true
-            }
+                'after': true,
+            },
         ],
         'comma-style': [
             'error',
-            'last'
+            'last',
         ],
         'space-before-blocks': 'error',
         'arrow-spacing': [
             'error',
             {
                 'before': true,
-                'after': true
-            }
+                'after': true,
+            },
         ],
         'brace-style': 'off',
         '@typescript-eslint/brace-style': [
             'error',
             '1tbs',
             {
-                'allowSingleLine': true
-            }
+                'allowSingleLine': true,
+            },
         ],
         'template-curly-spacing': [
             'error',
-            'never'
+            'never',
         ],
         'prefer-template': 'error',
         'no-useless-concat': 'error',
@@ -147,20 +147,20 @@ module.exports = {
         'no-param-reassign': [
             'error',
             {
-                'props': false
-            }
+                'props': false,
+            },
         ],
         'new-parens': [
             'error',
-            'always'
+            'always',
         ],
         'default-param-last': 'off',
         '@typescript-eslint/default-param-last': 'error',
         'no-useless-computed-key': [
             'error',
             {
-                'enforceForClassMembers': true
-            }
+                'enforceForClassMembers': true,
+            },
         ],
         'dot-notation': 'off',
         '@typescript-eslint/dot-notation': 'off',
@@ -179,17 +179,17 @@ module.exports = {
                     {
                         pattern: '~/**',
                         group: 'external',
-                        position: 'after'
-                    }
+                        position: 'after',
+                    },
                 ],
                 groups: [
                     'builtin',
                     'external',
                     'internal',
                     'parent',
-                    'sibling'
-                ]
-            }
+                    'sibling',
+                ],
+            },
         ],
         'import/newline-after-import': 'error',
         'indent': 'off',
@@ -201,50 +201,50 @@ module.exports = {
                 'ignoredNodes': [
                     'FunctionExpression > .params[decorators.length > 0]',
                     'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
-                    'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key'
-                ]
-            }
+                    'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+                ],
+            },
         ],
         'linebreak-style': [
             'error',
-            'unix'
+            'unix',
         ],
         'arrow-parens': [
             'warn',
-            'always'
+            'always',
         ],
         '@typescript-eslint/explicit-member-accessibility': [
             'error',
             {
                 'accessibility': 'explicit',
-                'overrides': {'constructors': 'no-public'}
-            }
+                'overrides': { 'constructors': 'no-public' },
+            },
         ],
         '@typescript-eslint/explicit-function-return-type': [
             'error',
             {
-                'allowExpressions': false
-            }
+                'allowExpressions': false,
+            },
         ],
         '@typescript-eslint/member-delimiter-style': [
             'error',
             {
                 'multiline': {
                     'delimiter': 'semi',
-                    'requireLast': true
+                    'requireLast': true,
                 },
                 'singleline': {
                     'delimiter': 'comma',
-                    'requireLast': false
+                    'requireLast': false,
                 },
-                'multilineDetection': 'brackets'
-            }
+                'multilineDetection': 'brackets',
+            },
         ],
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/ban-ts-comment': 'off'
-    }
+        '@typescript-eslint/ban-ts-comment': 'off',
+    },
 };

@@ -35,20 +35,28 @@ enum UserActionType {
 }
 
 model Work {
-  id          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  titleEn     String         @default("")
-  titleUa     String         @default("")
-  categories  WorkCategory[]
-  thumbnail   Illustration   @relation(fields: [thumbnailId], references: [id])
-  thumbnailId String         @unique @db.Uuid
+  id          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  titleEn     String               @default("")
+  titleUa     String               @default("")
+  categories  WorkCategoryOnWork[]
+  thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id])
+  thumbnailId String               @unique @db.Uuid
 }
 
 model WorkCategory {
-  id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  textEn String @default("") @db.VarChar(255)
-  textUa String @default("") @db.VarChar(255)
-  work   Work   @relation(fields: [workId], references: [id])
-  workId String @db.Uuid
+  id     String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  textEn String               @default("") @db.VarChar(255)
+  textUa String               @default("") @db.VarChar(255)
+  works  WorkCategoryOnWork[]
+}
+
+model WorkCategoryOnWork {
+  work       Work         @relation(fields: [workId], references: [id])
+  workId     String       @db.Uuid
+  category   WorkCategory @relation(fields: [categoryId], references: [id])
+  categoryId String       @db.Uuid
+
+  @@id([workId, categoryId])
 }
 
 model Illustration {

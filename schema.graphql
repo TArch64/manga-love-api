@@ -8,18 +8,9 @@ type AuthObject {
   token: String!
 }
 
-input CreateIllustrationInput {
-  file: Upload!
-}
-
-input CreateWorkCategoryInput {
-  textEn: String!
-  textUa: String!
-}
-
 input CreateWorkInput {
-  categories: [CreateWorkCategoryInput!]!
-  illustration: CreateIllustrationInput!
+  categories: [String!]!
+  illustration: Upload!
   titleEn: String!
   titleUa: String!
 }
@@ -32,6 +23,7 @@ type Mutation {
 
 type Query {
   currentUser: UserObject!
+  workCategories: [WorkCategoryObject!]!
 }
 
 input SignInInput {
@@ -56,4 +48,10 @@ type UserObject {
   email: String!
   id: String!
   username: String!
+}
+
+type WorkCategoryObject {
+  id: String!
+  textEn: String!
+  textUa: String!
 }

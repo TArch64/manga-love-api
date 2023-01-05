@@ -12,7 +12,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { MicroservicesModule } from './microservices.config';
 import { UsersResolver } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
-import { WorksResolver } from './works';
+import { WorkCategoriesResolver, WorksResolver } from './works';
+import { UploadReceiverService } from './common/services';
 
 interface GraphqlContext {
     req: Request;
@@ -46,6 +47,8 @@ interface GraphqlContext {
         AuthResolver,
         UsersResolver,
         WorksResolver,
+        WorkCategoriesResolver,
+        UploadReceiverService,
         {
             provide: APP_GUARD,
             useClass: AuthGuard,

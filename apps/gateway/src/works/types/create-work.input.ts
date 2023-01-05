@@ -1,18 +1,20 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { CreateIllustrationInput } from '../../illustrations';
-import { CreateWorkCategoryInput } from './create-work-category.input';
+import { ICreateWorkRequest } from '@manga-love-api/work/types';
+import { ConstraintFormat, ConstraintValidator } from '../../common/decorators';
+import { GraphQLUpload, FileUpload } from '../../common/types';
 
 @InputType()
-export class CreateWorkInput {
+export class CreateWorkInput implements Omit<ICreateWorkRequest, 'illustration'> {
     @Field()
     public titleEn: string;
 
     @Field()
     public titleUa: string;
 
-    @Field((returns) => [CreateWorkCategoryInput])
-    public categories: CreateWorkCategoryInput[];
+    @Field((returns) => [String])
+    @ConstraintValidator({ format: ConstraintFormat.UUID, minItems: 1 })
+    public categories: string[];
 
-    @Field((returns) => CreateIllustrationInput)
-    public illustration: CreateIllustrationInput;
+    @Field((returns) => GraphQLUpload)
+    public illustration: Promise<FileUpload>;
 }

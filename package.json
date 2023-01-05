@@ -9,6 +9,9 @@
     "console": "ts-node ./libs/database/src/console",
     "prepare": "husky install"
   },
+  "prisma": {
+    "seed": "ts-node libs/database/src/seeds/execute"
+  },
   "dependencies": {
     "@bull-board/api": "^4.10.0",
     "@bull-board/express": "^4.10.0",
