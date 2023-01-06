@@ -58,6 +58,7 @@ export class EnvironmentService {
                 bucket: this.configService.getOrThrow('AWS_S3_BUCKET'),
                 accessKey: this.configService.getOrThrow('AWS_S3_ACCESS_KEY'),
                 secretKey: this.configService.getOrThrow('AWS_S3_SECRET_KEY'),
+                cloudfrontOrigin: this.configService.getOrThrow('AWS_CLOUDFRONT_ORIGIN'),
             },
         };
     }

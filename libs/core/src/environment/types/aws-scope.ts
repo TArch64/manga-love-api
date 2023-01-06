@@ -7,6 +7,7 @@ export interface IAwsScope {
 
 export interface IAwsS3Scope {
     bucket: IEnvironmentVars['AWS_S3_BUCKET'];
+    cloudfrontOrigin: IEnvironmentVars['AWS_CLOUDFRONT_ORIGIN'];
     secretKey: IEnvironmentVars['AWS_S3_SECRET_KEY'];
     accessKey: IEnvironmentVars['AWS_S3_ACCESS_KEY'];
 }

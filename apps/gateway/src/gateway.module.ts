@@ -15,6 +15,7 @@ import { UsersResolver } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorkCategoriesResolver, WorksResolver } from './works';
 import { UploadReceiverService } from './common/services';
+import { IllustrationResolver } from './illustrations';
 
 interface GraphqlContext {
     req: Request;
@@ -49,6 +50,7 @@ interface GraphqlContext {
         AuthResolver,
         UsersResolver,
         WorksResolver,
+        IllustrationResolver,
         WorkCategoriesResolver,
         UploadReceiverService,
         {

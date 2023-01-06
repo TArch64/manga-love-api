@@ -64,6 +64,7 @@ model Illustration {
   status         IllustrationStatus
   originalWidth  Int
   originalHeight Int
+  filename       String @db.VarChar(255)
   thumbnailWork  Work?
 }
 

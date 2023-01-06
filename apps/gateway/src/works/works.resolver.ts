@@ -7,6 +7,7 @@ import { PrismaService } from '@manga-love-api/database';
 import { Observable } from 'rxjs';
 import { Microservices } from '../gateway.microservices';
 import { UploadReceiverService } from '../common/services';
+import { IllustrationObject } from '../illustrations';
 import { CreateWorkInput, WorkCategoryObject, WorkObject } from './types';
 
 @Resolver((of) => WorkObject)
@@ -41,5 +42,12 @@ export class WorksResolver {
             .categories({ include: { category: true } });
 
         return relations.map((relation) => relation.category);
+    }
+
+    @ResolveField((returns) => IllustrationObject)
+    public async thumbnail(@Parent() work: WorkObject): Promise<IllustrationObject> {
+        return this.prisma.work
+            .findUnique({ where: { id: work.id } })
+            .thumbnail();
     }
 }

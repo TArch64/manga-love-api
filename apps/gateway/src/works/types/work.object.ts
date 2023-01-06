@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { IllustrationObject } from '../../illustrations';
 import { WorkCategoryObject } from './work-category.object';
 
 @ObjectType()
@@ -14,6 +15,7 @@ export class WorkObject {
 
     @Field((returns) => [WorkCategoryObject])
     public categories?: WorkCategoryObject[];
-}
 
-// thumbnail
+    @Field((returns) => IllustrationObject)
+    public thumbnail?: IllustrationObject;
+}

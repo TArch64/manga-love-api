@@ -24,6 +24,7 @@ export class UploaderController {
                 originalWidth: 0,
                 originalHeight: 0,
                 status: IllustrationStatus.UPLOADING,
+                filename: payload.filename,
             },
         });
 

@@ -15,6 +15,14 @@ input CreateWorkInput {
   titleUa: String!
 }
 
+type IllustrationObject {
+  id: String!
+  originalHeight: Float!
+  originalWidth: Float!
+  status: String!
+  url: String!
+}
+
 type Mutation {
   authSignIn(input: SignInInput!): AuthObject!
   authSignUp(input: SignUpInput!): AuthObject!
@@ -56,6 +64,7 @@ type WorkCategoryObject {
 type WorkObject {
   categories: [WorkCategoryObject!]!
   id: String!
+  thumbnail: IllustrationObject!
   titleEn: String!
   titleUa: String!
 }
