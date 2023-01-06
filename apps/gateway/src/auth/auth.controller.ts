@@ -3,7 +3,8 @@ import { Response } from 'express';
 import { map, Observable } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 import { IStatusResponse } from '@manga-love-api/core/status-response';
-import { Microservices } from '../microservices.config';
+import { AuthCommand } from '@manga-love-api/auth/auth.command';
+import { Microservices } from '../gateway.microservices';
 
 interface IVerifyEmailRender {
     heading: string;
@@ -22,7 +23,7 @@ export class AuthController {
         @Res() response: Response,
         @Query('code') code: string,
     ): Observable<IVerifyEmailRender> {
-        return this.authMicroservice.send<IStatusResponse, string>('verify-email', code).pipe(
+        return this.authMicroservice.send<IStatusResponse, string>(AuthCommand.VERIFY_EMAIL, code).pipe(
             map(({ success }) => ({
                 heading: success ? 'SUCCESS!' : 'Ooops...',
                 description: success

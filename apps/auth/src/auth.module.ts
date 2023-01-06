@@ -5,7 +5,7 @@ import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/envi
 import { AuthController } from './auth.controller';
 import { SignUpValidator } from './validators';
 import { AuthenticationService, SignInService, SignUpService, TokenService, VerifyEmailService } from './services';
-import { MicroservicesModule } from './microservices.config';
+import { MicroservicesModule } from './auth.microservices';
 
 @Module({
     imports: [

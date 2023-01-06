@@ -5,7 +5,8 @@ import { PrismaService, User, UserAction, UserActionType, UserEmailStatus } from
 import { EnvironmentService } from '@manga-love-api/core/environment';
 import { MailConfig } from '@manga-love-api/mailer/types';
 import { IStatusResponse } from '@manga-love-api/core/status-response';
-import { Microservices } from '../microservices.config';
+import { MailerCommand } from '@manga-love-api/mailer/mailer.command';
+import { Microservices } from '../auth.microservices';
 
 @Injectable()
 export class VerifyEmailService {
@@ -29,7 +30,7 @@ export class VerifyEmailService {
     }
 
     private async sendEmail(user: User, action: UserAction): Promise<void> {
-        await firstValueFrom(this.mailerMicroservice.send<IStatusResponse, MailConfig>('send', {
+        await firstValueFrom(this.mailerMicroservice.send<IStatusResponse, MailConfig>(MailerCommand.SEND, {
             email: user.email,
             subject: 'Verify Email',
             template: {

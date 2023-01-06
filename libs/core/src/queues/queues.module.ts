@@ -1,9 +1,10 @@
 import { DynamicModule } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
-import { EnvironmentService } from '../environment';
+import { EnvironmentModule, EnvironmentService } from '../environment';
 
 const QUEUES = {
     MAILER: true,
+    UPLOADER: true,
 };
 
 type QueueKey = keyof typeof QUEUES;
@@ -29,6 +30,7 @@ export class QueuesFactoryModule {
 
             queueModules: [
                 BullModule.forRootAsync({
+                    imports: [EnvironmentModule],
                     inject: [EnvironmentService],
                     useFactory: ({ redis }: EnvironmentService) => ({ redis }),
                 }),

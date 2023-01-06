@@ -7,7 +7,7 @@ import { Process, Processor } from '@nestjs/bull';
 import { Job } from 'bull';
 import { EnvironmentService } from '@manga-love-api/core/environment';
 import { MailAttachment, MailConfig } from '../types';
-import { Queues } from '../queues.config';
+import { Queues } from '../mailer.queues';
 import { TemplateRenderService } from './template-render.service';
 
 export const MAIL_TRANSPORTER = Symbol('MAIL_TRANSPORTER');

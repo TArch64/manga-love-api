@@ -6,7 +6,7 @@ import { getQueueToken } from '@nestjs/bull';
 import { RequestHandler } from 'express';
 import expressBasicAuth from 'express-basic-auth';
 import { EnvironmentService } from '@manga-love-api/core/environment';
-import { Queues } from './queues.config';
+import { Queues } from './bull-admin.queues';
 
 const ENDPOINT = '/bull-admin';
 

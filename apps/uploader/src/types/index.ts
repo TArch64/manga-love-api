@@ -1,1 +1,1 @@
-export { UploadingFile } from './uploading-file';
+export { IUploadIllustrationRequest } from './upload-illustration-request';

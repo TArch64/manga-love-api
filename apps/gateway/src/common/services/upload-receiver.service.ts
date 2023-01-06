@@ -1,11 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { UploadingFile } from '@manga-love-api/uploader/types';
+import { Inject, Injectable } from '@nestjs/common';
+import { IUploadIllustrationRequest } from '@manga-love-api/uploader/types';
+import { UploaderStorageService } from '@manga-love-api/core/uploader-storage';
 import { FileUpload } from '../types';
 
 @Injectable()
 export class UploadReceiverService {
-    public async receiveFile(input: Promise<FileUpload>): Promise<UploadingFile> {
-        const upload = await input;
-        return UploadingFile.fromReadable(upload.createReadStream(), upload.filename, upload.mimetype);
+    @Inject()
+    private uploaderService: UploaderStorageService;
+
+    public async receiveFile(upload: FileUpload): Promise<IUploadIllustrationRequest> {
+        return {
+            objectId: await this.uploaderService.storeObject(upload.createReadStream()),
+            filename: upload.filename,
+            mimetype: upload.mimetype,
+        };
     }
 }

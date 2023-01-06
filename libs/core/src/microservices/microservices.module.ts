@@ -1,6 +1,6 @@
 import { DynamicModule, InjectionToken } from '@nestjs/common';
 import { ClientsModule, Transport, ClientsProviderAsyncOptions, RedisOptions } from '@nestjs/microservices';
-import { EnvironmentService } from '../environment';
+import { EnvironmentModule, EnvironmentService } from '../environment';
 import { MICROSERVICES } from './microservices';
 
 export type MicroserviceKey = keyof typeof MICROSERVICES;
@@ -35,6 +35,7 @@ export class MicroservicesFactoryModule {
     private static createClientsModule<ServiceKey extends MicroserviceKey>(tokens: MicroserviceTokens<ServiceKey>): DynamicModule {
         const clients = Object.entries(tokens).map(([key, token]): ClientsProviderAsyncOptions => ({
             name: token as symbol,
+            imports: [EnvironmentModule],
             inject: [EnvironmentService],
             useFactory: ({ redis }: EnvironmentService): RedisOptions => ({
                 transport: Transport.REDIS,

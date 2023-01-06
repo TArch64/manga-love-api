@@ -40,6 +40,12 @@ services:
   work:
     <<: *api_common
     command: npm run start:dev work
+    links:
+      - uploader
+
+  uploader:
+    <<: *api_common
+    command: npm run start:dev uploader
 
   bull-admin:
     <<: *api_common

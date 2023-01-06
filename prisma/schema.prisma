@@ -61,8 +61,14 @@ model WorkCategoryOnWork {
 
 model Illustration {
   id             String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status         IllustrationStatus
   src            String
   originalWidth  Int
   originalHeight Int
   thumbnailWork  Work?
+}
+
+enum IllustrationStatus {
+  UPLOADING
+  UPLOADED
 }

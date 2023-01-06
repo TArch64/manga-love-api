@@ -5,6 +5,7 @@ import { User } from '@manga-love-api/database';
 import { IAuthResponse, ISignInRequest, ISignUpRequest } from './types';
 import { AuthenticationService, SignInService, SignUpService, VerifyEmailService } from './services';
 import { SignUpValidator } from './validators';
+import { AuthCommand } from './auth.command';
 
 @Controller()
 export class AuthController {
@@ -23,23 +24,23 @@ export class AuthController {
     @Inject()
     private authenticationService: AuthenticationService;
 
-    @MessagePattern('sign-up')
+    @MessagePattern(AuthCommand.SIGN_UP)
     public async signUp(payload: ISignUpRequest): Promise<IAuthResponse> {
         await this.signUpValidator.validate(payload);
         return this.signUpService.signUp(payload);
     }
 
-    @MessagePattern('sign-in')
+    @MessagePattern(AuthCommand.SIGN_IN)
     public async signIn(payload: ISignInRequest): Promise<IAuthResponse> {
         return this.signInService.signIn(payload);
     }
 
-    @MessagePattern('verify-email')
+    @MessagePattern(AuthCommand.VERIFY_EMAIL)
     public async verifyEmail(code: string): Promise<IStatusResponse> {
         return { success: await this.verifyEmailService.verify(code) };
     }
 
-    @MessagePattern('authenticate')
+    @MessagePattern(AuthCommand.AUTHENTICATE)
     public async authenticate(token: string): Promise<User | null> {
         return this.authenticationService.authenticate(token);
     }

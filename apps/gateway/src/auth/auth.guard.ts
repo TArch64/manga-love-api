@@ -5,7 +5,8 @@ import { ClientProxy } from '@nestjs/microservices';
 import { map, Observable, of, tap } from 'rxjs';
 import { User } from '@manga-love-api/database';
 import { Request } from 'express';
-import { Microservices } from '../microservices.config';
+import { AuthCommand } from '@manga-love-api/auth/auth.command';
+import { Microservices } from '../gateway.microservices';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -38,6 +39,6 @@ export class AuthGuard implements CanActivate {
 
     private authenticate(request: Request): Observable<User | null> {
         const token = request.headers.authorization;
-        return token ? this.authMicroservice.send<User>('authenticate', token) : of(null);
+        return token ? this.authMicroservice.send<User>(AuthCommand.AUTHENTICATE, token) : of(null);
     }
 }

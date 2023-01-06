@@ -1,14 +1,17 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Inject } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { Work } from '@manga-love-api/database';
-import { IStatusResponse } from '@manga-love-api/core/status-response';
 import { ICreateWorkRequest } from './types';
+import { CreateWorkService } from './services';
+import { WorkCommand } from './work.command';
 
 @Controller()
 export class WorkController {
-    @MessagePattern('create-work')
-    public async createWork(payload: ICreateWorkRequest): Promise<IStatusResponse> {
-        console.log(payload);
-        return { success: true };
+    @Inject()
+    private createWorkService: CreateWorkService;
+
+    @MessagePattern(WorkCommand.CREATE_WORK)
+    public async createWork(payload: ICreateWorkRequest): Promise<Work> {
+        return this.createWorkService.create(payload);
     }
 }

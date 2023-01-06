@@ -9,7 +9,8 @@ import { DatabaseModule } from '@manga-love-api/database';
 import { Request, Response } from 'express';
 import { EnvironmentModule } from '@manga-love-api/core/environment';
 import { APP_GUARD } from '@nestjs/core';
-import { MicroservicesModule } from './microservices.config';
+import { UploaderStorageModule } from '@manga-love-api/core/uploader-storage';
+import { MicroservicesModule } from './gateway.microservices';
 import { UsersResolver } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorkCategoriesResolver, WorksResolver } from './works';
@@ -39,6 +40,7 @@ interface GraphqlContext {
         EnvironmentModule,
         MicroservicesModule,
         DatabaseModule,
+        UploaderStorageModule,
     ],
     controllers: [
         AuthController,

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { createTransport, SentMessageInfo, Transporter } from 'nodemailer';
 import { EnvironmentModule, EnvironmentService } from '@manga-love-api/core/environment';
 import { MailerController } from './mailer.controller';
-import { queueModules } from './queues.config';
+import { queueModules } from './mailer.queues';
 import { MAIL_TRANSPORTER, SenderQueue, TemplateRenderService } from './services';
 
 @Module({
