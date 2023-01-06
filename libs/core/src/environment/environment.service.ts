@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Environment, IBullAdminScope, IEnvironmentVars, IJwtScope, IMailerScope, IRedisScope } from './types';
+import { Environment, IAwsScope, IBullAdminScope, IEnvironmentVars, IJwtScope, IMailerScope, IRedisScope } from './types';
 
 @Injectable()
 export class EnvironmentService {
@@ -48,6 +48,17 @@ export class EnvironmentService {
         return {
             host: this.configService.getOrThrow('REDIS_HOST'),
             port: this.configService.getOrThrow<number>('REDIS_PORT', { infer: true }),
+        };
+    }
+
+    public get aws(): IAwsScope {
+        return {
+            region: this.configService.getOrThrow('AWS_REGION'),
+            s3: {
+                bucket: this.configService.getOrThrow('AWS_S3_BUCKET'),
+                accessKey: this.configService.getOrThrow('AWS_S3_ACCESS_KEY'),
+                secretKey: this.configService.getOrThrow('AWS_S3_SECRET_KEY'),
+            },
         };
     }
 }

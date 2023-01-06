@@ -55,6 +55,12 @@
       ],
       "@manga-love-api/uploader/*": [
         "apps/uploader/src/*"
+      ],
+      "@manga-love-api/aws": [
+        "libs/aws/src"
+      ],
+      "@manga-love-api/aws/*": [
+        "libs/aws/src/*"
       ]
     }
   }

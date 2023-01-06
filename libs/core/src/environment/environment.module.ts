@@ -11,11 +11,7 @@ import { EnvironmentService } from './environment.service';
             ignoreEnvFile: true,
         }),
     ],
-    providers: [
-        EnvironmentService,
-    ],
-    exports: [
-        EnvironmentService,
-    ],
+    providers: [EnvironmentService],
+    exports: [EnvironmentService],
 })
 export class EnvironmentModule {}

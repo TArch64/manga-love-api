@@ -13,6 +13,7 @@
     "seed": "ts-node libs/database/src/seeds/execute"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.245.0",
     "@bull-board/api": "^4.10.0",
     "@bull-board/express": "^4.10.0",
     "@nestjs/apollo": "^10.1.7",

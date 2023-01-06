@@ -15,4 +15,9 @@ export interface IEnvironmentVars {
 
     REDIS_HOST: string;
     REDIS_PORT: number;
+
+    AWS_REGION: string;
+    AWS_S3_BUCKET: string;
+    AWS_S3_ACCESS_KEY: string;
+    AWS_S3_SECRET_KEY: string;
 }

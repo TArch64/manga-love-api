@@ -15,6 +15,10 @@ export class UploaderStorageService {
         return objectId;
     }
 
+    public getObject(objectId: string): Promise<Buffer> {
+        return this.redisService.getBuffer(this.buildObjectKey(objectId));
+    }
+
     public async removeObject(objectId: string): Promise<void> {
         await this.redisService.del(this.buildObjectKey(objectId));
     }

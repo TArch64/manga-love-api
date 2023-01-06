@@ -4,6 +4,7 @@ x-api-common: &api_common
     image: manga_love_api
     build: .
     stdin_open: true
+    tty: true
     restart: always
     volumes:
       - .:/app
@@ -71,7 +72,6 @@ services:
       - love
     env_file:
       - ./.env
-
 
 volumes:
   data_psql:
