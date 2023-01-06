@@ -21,7 +21,6 @@ export class UploaderController {
     public async uploadIllustration(payload: IUploadIllustrationRequest): Promise<string> {
         const illustration = await this.prisma.illustration.create({
             data: {
-                src: '',
                 originalWidth: 0,
                 originalHeight: 0,
                 status: IllustrationStatus.UPLOADING,

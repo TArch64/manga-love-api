@@ -33,12 +33,6 @@ export class CreateWorkService {
                     },
                 },
             },
-            include: {
-                thumbnail: true,
-                categories: {
-                    include: { category: true },
-                },
-            },
         });
     }
 }

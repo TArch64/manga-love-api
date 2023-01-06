@@ -39,7 +39,7 @@ model Work {
   titleEn     String               @default("")
   titleUa     String               @default("")
   categories  WorkCategoryOnWork[]
-  thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id])
+  thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id], onDelete: Cascade)
   thumbnailId String               @unique @db.Uuid
 }
 
@@ -51,9 +51,9 @@ model WorkCategory {
 }
 
 model WorkCategoryOnWork {
-  work       Work         @relation(fields: [workId], references: [id])
+  work       Work         @relation(fields: [workId], references: [id], onDelete: Cascade)
   workId     String       @db.Uuid
-  category   WorkCategory @relation(fields: [categoryId], references: [id])
+  category   WorkCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String       @db.Uuid
 
   @@id([workId, categoryId])
@@ -62,7 +62,6 @@ model WorkCategoryOnWork {
 model Illustration {
   id             String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   status         IllustrationStatus
-  src            String
   originalWidth  Int
   originalHeight Int
   thumbnailWork  Work?

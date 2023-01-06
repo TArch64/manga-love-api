@@ -1,15 +1,15 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { ClientProxy } from '@nestjs/microservices';
 import { Inject } from '@nestjs/common';
 import { ICreateWorkRequest } from '@manga-love-api/work/types';
-import { Observable } from 'rxjs';
 import { WorkCommand } from '@manga-love-api/work/work.command';
-import { SuccessObject } from '../common/types';
+import { PrismaService } from '@manga-love-api/database';
+import { Observable } from 'rxjs';
 import { Microservices } from '../gateway.microservices';
 import { UploadReceiverService } from '../common/services';
-import { CreateWorkInput } from './types';
+import { CreateWorkInput, WorkCategoryObject, WorkObject } from './types';
 
-@Resolver()
+@Resolver((of) => WorkObject)
 export class WorksResolver {
     @Inject(Microservices.WORK)
     private workMicroservice: ClientProxy;
@@ -17,12 +17,29 @@ export class WorksResolver {
     @Inject()
     private uploadService: UploadReceiverService;
 
-    @Mutation((returns) => SuccessObject)
-    public async workCreate(@Args('input') { illustration, ...input }: CreateWorkInput): Promise<Observable<SuccessObject>> {
+    @Inject()
+    private prisma: PrismaService;
+
+    @Mutation((returns) => WorkObject)
+    public async workCreate(@Args('input') { illustration, ...input }: CreateWorkInput): Promise<Observable<WorkObject>> {
         const request: ICreateWorkRequest = {
             ...input,
             illustration: await this.uploadService.receiveFile(await illustration),
         };
-        return this.workMicroservice.send(WorkCommand.CREATE_WORK, request).pipe(SuccessObject.mapTo);
+        return this.workMicroservice.send(WorkCommand.CREATE_WORK, request);
+    }
+
+    @Query((returns) => [WorkObject])
+    public async works(): Promise<WorkObject[]> {
+        return this.prisma.work.findMany();
+    }
+
+    @ResolveField((returns) => [WorkCategoryObject])
+    public async categories(@Parent() work: WorkObject): Promise<WorkCategoryObject[]> {
+        const relations = await this.prisma.work
+            .findUnique({ where: { id: work.id } })
+            .categories({ include: { category: true } });
+
+        return relations.map((relation) => relation.category);
     }
 }
