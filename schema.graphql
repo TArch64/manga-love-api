@@ -36,6 +36,7 @@ type Mutation {
 
 type Query {
   currentUser: UserObject!
+  work(id: String!): WorkObject!
   workCategories: [WorkCategoryObject!]!
   works(filter: WorkFilterInput!): [WorkObject!]!
 }
