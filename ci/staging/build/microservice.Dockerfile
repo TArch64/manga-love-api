@@ -6,4 +6,6 @@ ARG APP_VERSION
 FROM $APP_IMAGE-base:$APP_VERSION
 LABEL org.opencontainers.image.source $CR_LABEL
 
+WORKDIR /app
+
 RUN npm run build:prod $APP_NAME
