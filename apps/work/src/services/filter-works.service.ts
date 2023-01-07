@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IFilterWorksRequest } from '@manga-love-api/work/types';
-import { Prisma, PrismaService, Work } from '@manga-love-api/database';
-
-type QueryCursor = Required<Pick<Prisma.WorkFindManyArgs, 'cursor' | 'skip'>> | {};
+import { PrismaService, Work } from '@manga-love-api/database';
 
 @Injectable()
 export class FilterWorksService {
@@ -13,7 +11,7 @@ export class FilterWorksService {
         return this.prisma.work.findMany({
             skip: filter.offset,
             take: filter.count,
-            orderBy: { updatedAt: 'desc' },
+            orderBy: { [filter.sort.field]: filter.sort.direction },
         });
     }
 }

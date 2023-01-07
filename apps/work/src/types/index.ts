@@ -1,2 +1,2 @@
 export { ICreateWorkRequest } from './create-work-request';
-export { IFilterWorksRequest } from './filter-works-request';
+export { IFilterWorksRequest, WorkSortField, IFilterWorksSort } from './filter-works-request';

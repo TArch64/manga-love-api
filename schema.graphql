@@ -15,6 +15,11 @@ input CreateWorkInput {
   titleUa: String!
 }
 
+enum FieldSortOrder {
+  ASC
+  DESC
+}
+
 type IllustrationObject {
   id: String!
   originalHeight: Int!
@@ -64,6 +69,12 @@ type WorkCategoryObject {
 input WorkFilterInput {
   count: Int!
   offset: Int!
+  sort: WorkFilterSortInput! = {direction: DESC, field: UPDATED_AT}
+}
+
+input WorkFilterSortInput {
+  direction: FieldSortOrder! = DESC
+  field: WorkSortField! = UPDATED_AT
 }
 
 type WorkObject {
@@ -72,4 +83,8 @@ type WorkObject {
   thumbnail: IllustrationObject!
   titleEn: String!
   titleUa: String!
+}
+
+enum WorkSortField {
+  UPDATED_AT
 }

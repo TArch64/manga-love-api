@@ -1,21 +1,25 @@
 import process from 'process';
 import path from 'path';
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule, registerEnumType } from '@nestjs/graphql';
 import { constraintDirective } from 'graphql-constraint-directive';
 import { constraintDirectiveTypeDefsObj } from 'graphql-constraint-directive/lib/type-defs';
 import { ApolloDriver } from '@nestjs/apollo';
-import { DatabaseModule } from '@manga-love-api/database';
+import { DatabaseModule, FieldSortOrder } from '@manga-love-api/database';
 import { Request, Response } from 'express';
 import { EnvironmentModule } from '@manga-love-api/core/environment';
 import { APP_GUARD } from '@nestjs/core';
 import { UploaderStorageModule } from '@manga-love-api/core/uploader-storage';
+import { WorkSortField } from '@manga-love-api/work/types';
 import { MicroservicesModule } from './gateway.microservices';
 import { UsersResolver } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorkCategoriesResolver, WorksResolver } from './works';
 import { UploadReceiverService } from './common/services';
 import { IllustrationResolver } from './illustrations';
+
+registerEnumType(WorkSortField, { name: 'WorkSortField' });
+registerEnumType(FieldSortOrder, { name: 'FieldSortOrder' });
 
 interface GraphqlContext {
     req: Request;
