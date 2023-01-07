@@ -42,7 +42,7 @@ phases:
           --cache-from $API_IMAGE-gateway:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME gateway \
+          --build-arg APP_NAME=gateway \
           .
 
       - >
@@ -53,7 +53,7 @@ phases:
           --cache-from $API_IMAGE-auth:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME auth \
+          --build-arg APP_NAME=auth \
           .
 
       - >
@@ -64,7 +64,7 @@ phases:
           --cache-from $API_IMAGE-mailer:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME mailer \
+          --build-arg APP_NAME=mailer \
           .
 
       - >
@@ -75,7 +75,7 @@ phases:
           --cache-from $API_IMAGE-work:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME work \
+          --build-arg APP_NAME=work \
           .
 
       - >
@@ -86,7 +86,7 @@ phases:
           --cache-from $API_IMAGE-uploader:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME uploader \
+          --build-arg APP_NAME=uploader \
           .
 
       - >
@@ -97,7 +97,7 @@ phases:
           --cache-from $API_IMAGE-bull-admin:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
-          --build-arg APP_NAME bull-admin \
+          --build-arg APP_NAME=bull-admin \
           .
 
       - >
