@@ -3,7 +3,7 @@ import { EnvironmentModule } from '@manga-love-api/core/environment';
 import { DatabaseModule } from '@manga-love-api/database';
 import { WorkController } from './work.controller';
 import { MicroservicesModule } from './work.microservices';
-import { CreateWorkService } from './services';
+import { CreateWorkService, FilterWorksService } from './services';
 
 @Module({
     imports: [
@@ -12,6 +12,9 @@ import { CreateWorkService } from './services';
         MicroservicesModule,
     ],
     controllers: [WorkController],
-    providers: [CreateWorkService],
+    providers: [
+        CreateWorkService,
+        FilterWorksService,
+    ],
 })
 export class WorkModule {}

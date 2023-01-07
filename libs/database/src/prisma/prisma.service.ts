@@ -1,8 +1,12 @@
-import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { INestApplication, Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { EnvironmentService } from '@manga-love-api/core/environment';
+import { PrismaClient } from './client';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
+    @Inject()
+    private environment: EnvironmentService;
+
     constructor() {
         super({
             log: [{ level: 'query', emit: 'event' }],
@@ -11,7 +15,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
     public async onModuleInit(): Promise<void> {
         await this.$connect();
-        this.useLogger();
+        if (this.environment.isDevelopment) this.useLogger();
     }
 
     public async enableShutdownHooks(app: INestApplication): Promise<void> {

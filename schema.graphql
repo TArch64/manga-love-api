@@ -17,8 +17,8 @@ input CreateWorkInput {
 
 type IllustrationObject {
   id: String!
-  originalHeight: Float!
-  originalWidth: Float!
+  originalHeight: Int!
+  originalWidth: Int!
   status: String!
   url: String!
 }
@@ -32,7 +32,7 @@ type Mutation {
 type Query {
   currentUser: UserObject!
   workCategories: [WorkCategoryObject!]!
-  works: [WorkObject!]!
+  works(filter: WorkFilterInput!): WorkFilterObject!
 }
 
 input SignInInput {
@@ -59,6 +59,16 @@ type WorkCategoryObject {
   id: String!
   textEn: String!
   textUa: String!
+}
+
+input WorkFilterInput {
+  count: Int!
+  cursor: String
+}
+
+type WorkFilterObject {
+  cursor: String
+  list: [WorkObject!]!
 }
 
 type WorkObject {

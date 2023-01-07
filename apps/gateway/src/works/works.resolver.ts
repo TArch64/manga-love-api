@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { Microservices } from '../gateway.microservices';
 import { UploadReceiverService } from '../common/services';
 import { IllustrationObject } from '../illustrations';
-import { CreateWorkInput, WorkCategoryObject, WorkObject } from './types';
+import { CreateWorkInput, WorkCategoryObject, WorkFilterInput, WorkFilterObject, WorkObject } from './types';
 
 @Resolver((of) => WorkObject)
 export class WorksResolver {
@@ -30,9 +30,9 @@ export class WorksResolver {
         return this.workMicroservice.send(WorkCommand.CREATE_WORK, request);
     }
 
-    @Query((returns) => [WorkObject])
-    public async works(): Promise<WorkObject[]> {
-        return this.prisma.work.findMany();
+    @Query((returns) => WorkFilterObject)
+    public works(@Args('filter') filter: WorkFilterInput): Observable<WorkFilterObject> {
+        return this.workMicroservice.send(WorkCommand.FILTER_WORKS, filter);
     }
 
     @ResolveField((returns) => [WorkCategoryObject])

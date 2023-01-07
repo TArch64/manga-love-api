@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output = "../libs/database/src/prisma/client"
+  output   = "../libs/database/src/prisma/client"
 }
 
 datasource db {
@@ -40,8 +40,9 @@ model Work {
   titleEn     String               @default("")
   titleUa     String               @default("")
   categories  WorkCategoryOnWork[]
-  thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id], onDelete: Cascade)
+  thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id])
   thumbnailId String               @unique @db.Uuid
+  position    Int                  @unique @default(autoincrement())
 }
 
 model WorkCategory {
@@ -61,11 +62,11 @@ model WorkCategoryOnWork {
 }
 
 model Illustration {
-  id             String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   status         IllustrationStatus
   originalWidth  Int
   originalHeight Int
-  filename       String @db.VarChar(255)
+  filename       String             @db.VarChar(255)
   thumbnailWork  Work?
 }
 
