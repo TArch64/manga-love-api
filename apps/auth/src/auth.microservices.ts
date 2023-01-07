@@ -1,3 +1,3 @@
 import { MicroservicesFactoryModule } from '@manga-love-api/core/microservices';
 
-export const { MicroservicesModule, Microservices } = MicroservicesFactoryModule.create('MAILER');
+export const { MicroservicesModule, Microservices } = MicroservicesFactoryModule.create('MAILER', 'UPLOADER');

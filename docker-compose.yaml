@@ -33,6 +33,7 @@ services:
     command: npm run start:dev auth
     links:
       - mailer
+      - uploader
 
   mailer:
     <<: *api_common

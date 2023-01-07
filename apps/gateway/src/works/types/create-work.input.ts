@@ -1,6 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { ICreateWorkRequest } from '@manga-love-api/work/types';
-import { ConstraintValidator } from '../../common/decorators';
 import { GraphQLUpload, GraphQLUUID, FileUpload } from '../../common/types';
 
 @InputType()

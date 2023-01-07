@@ -47,6 +47,7 @@ input SignInInput {
 }
 
 input SignUpInput {
+  avatar: Upload
   email: String!
   password: String!
   username: String!
