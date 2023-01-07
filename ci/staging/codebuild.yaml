@@ -23,6 +23,16 @@ phases:
 
       - export API_IMAGE="$CR_BASE/manga-love-api"
 
+      - docker pull $API_IMAGE-base:latest
+      - docker pull $API_IMAGE-gateway:latest
+      - docker pull $API_IMAGE-auth:latest
+      - docker pull $API_IMAGE-mailer:latest
+      - docker pull $API_IMAGE-work:latest
+      - docker pull $API_IMAGE-uploader:latest
+      - docker pull $API_IMAGE-bull-admin:latest
+      - docker pull $API_IMAGE-nginx:latest
+
+
   build:
     commands:
       - >
