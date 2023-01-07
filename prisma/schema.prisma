@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../libs/database/src/prisma/client"
+  output   = "../libs/database/src/client"
 }
 
 datasource db {
@@ -15,7 +15,9 @@ model User {
   emailStatus UserEmailStatus @default(UNVERIFIED)
   password    String
   createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt @default(now())
+  updatedAt   DateTime        @default(now()) @updatedAt
+  avatar      Illustration    @relation(fields: [avatarId], references: [id])
+  avatarId    String          @db.Uuid
   actions     UserAction[]
 }
 
@@ -30,13 +32,19 @@ model UserAction {
   user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String         @db.Uuid
   createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt @default(now())
+  updatedAt DateTime       @default(now()) @updatedAt
 
   @@unique([userId, type])
 }
 
 enum UserActionType {
   VERIFY_EMAIL
+}
+
+model UserDefaultAvatar {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  index        Int          @db.SmallInt @unique
+  illustration Illustration @relation(fields: [id], references: [id])
 }
 
 model Work {
@@ -47,7 +55,7 @@ model Work {
   thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id])
   thumbnailId String               @unique @db.Uuid
   createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt @default(now())
+  updatedAt   DateTime             @default(now()) @updatedAt
 
   @@index([titleEn, titleUa])
 }
@@ -58,7 +66,7 @@ model WorkCategory {
   textUa    String               @default("") @db.VarChar(255)
   works     WorkCategoryOnWork[]
   createdAt DateTime             @default(now())
-  updatedAt DateTime             @updatedAt @default(now())
+  updatedAt DateTime             @default(now()) @updatedAt
 }
 
 model WorkCategoryOnWork {
@@ -71,14 +79,17 @@ model WorkCategoryOnWork {
 }
 
 model Illustration {
-  id             String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  status         IllustrationStatus
-  originalWidth  Int
-  originalHeight Int
-  filename       String             @db.VarChar(255)
-  thumbnailWork  Work?
-  createdAt      DateTime           @default(now())
-  updatedAt      DateTime           @updatedAt @default(now())
+  id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status            IllustrationStatus
+  originalWidth     Int
+  originalHeight    Int
+  filename          String              @db.VarChar(255)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now()) @updatedAt
+  alias             String?
+  thumbnailWork     Work?
+  avatarUsers        User[]
+  defaultAvatarUser UserDefaultAvatar?
 }
 
 enum IllustrationStatus {

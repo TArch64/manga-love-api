@@ -52,9 +52,9 @@ export class WorksResolver {
     }
 
     @ResolveField((returns) => IllustrationObject)
-    public async thumbnail(@Parent() work: WorkObject): Promise<IllustrationObject> {
-        return this.prisma.work
-            .findUnique({ where: { id: work.id } })
-            .thumbnail();
+    public thumbnail(@Parent() work: WorkObject): Promise<IllustrationObject> {
+        return this.prisma.illustration.findUnique({
+            where: { id: work.thumbnailId },
+        });
     }
 }

@@ -21,4 +21,5 @@ export class IllustrationObject {
     public url?: string;
 
     public filename: string;
+    public alias?: string;
 }

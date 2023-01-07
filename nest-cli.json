@@ -5,10 +5,6 @@
     "deleteOutDir": true,
     "webpack": false,
     "tsConfigPath": "tsconfig.json",
-    "assets": [
-      "**/*.mjml",
-      "**/*.ejs"
-    ],
     "watchAssets": true
   },
   "monorepo": true,
@@ -22,9 +18,10 @@
         "tsConfigPath": "apps/gateway/tsconfig.app.json",
         "assets": [
           {
-            "include": "../../../libs/database/src/prisma/client/**/*",
+            "include": "../../../libs/database/src/client/**/*",
             "outDir": "dist/apps/gateway/libs/database/src"
-          }
+          },
+          "**/*.ejs"
         ]
       }
     },
@@ -55,7 +52,7 @@
         "tsConfigPath": "apps/auth/tsconfig.app.json",
         "assets": [
           {
-            "include": "../../../libs/database/src/prisma/client/**/*",
+            "include": "../../../libs/database/src/client/**/*",
             "outDir": "dist/apps/auth/libs/database/src"
           }
         ]
@@ -88,7 +85,7 @@
         "tsConfigPath": "apps/work/tsconfig.app.json",
         "assets": [
           {
-            "include": "../../../libs/database/src/prisma/client/**/*",
+            "include": "../../../libs/database/src/client/**/*",
             "outDir": "dist/apps/work/libs/database/src"
           }
         ]
@@ -103,7 +100,7 @@
         "tsConfigPath": "apps/uploader/tsconfig.app.json",
         "assets": [
           {
-            "include": "../../../libs/database/src/prisma/client/**/*",
+            "include": "../../../libs/database/src/client/**/*",
             "outDir": "dist/apps/uploader/libs/database/src"
           }
         ]

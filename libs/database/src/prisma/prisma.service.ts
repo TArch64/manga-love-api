@@ -1,6 +1,6 @@
 import { INestApplication, Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { EnvironmentService } from '@manga-love-api/core/environment';
-import { PrismaClient } from './client';
+import { PrismaClient } from '../client';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {

@@ -10,11 +10,12 @@ export class IllustrationResolver {
 
     @ResolveField()
     public url(@Parent() illustration: IllustrationObject): string {
-        return [
-            this.environment.aws.s3.cloudfrontOrigin,
+        const objectPath = illustration.alias || [
             'illustrations',
             illustration.id,
             illustration.filename,
-        ].join('/');
+        ];
+
+        return [this.environment.aws.s3.cloudfrontOrigin].concat(objectPath).join('/');
     }
 }

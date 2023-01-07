@@ -19,4 +19,6 @@ export class WorkObject {
 
     @Field((returns) => IllustrationObject)
     public thumbnail?: IllustrationObject;
+
+    public thumbnailId: string;
 }

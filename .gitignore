@@ -6,4 +6,4 @@
 .env
 /tmp
 prisma/migrations/migration_lock.toml
-libs/database/src/prisma/client
+libs/database/src/client

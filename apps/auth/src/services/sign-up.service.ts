@@ -23,11 +23,19 @@ export class SignUpService {
                 username: payload.username,
                 email: payload.email,
                 password: await hash(payload.password),
+                avatarId: await this.getDefaultAvatarId(),
             },
         });
         await this.verifyEmailService.send(user);
 
         const tokenPayload: IAuthenticationPayload = { userId: user.id };
         return { token: await this.tokenService.encode(tokenPayload) };
+    }
+
+    private async getDefaultAvatarId(): Promise<string> {
+        const defaultAvatar = await this.prisma.userDefaultAvatar.findUnique({
+            where: { index: Math.floor(Math.random() * 10) },
+        });
+        return defaultAvatar.id;
     }
 }

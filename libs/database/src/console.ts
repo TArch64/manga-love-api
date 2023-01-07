@@ -1,6 +1,6 @@
 import { start } from 'repl';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { PrismaClient } from './prisma/client';
+import { PrismaClient } from './client';
 
 global.db = new PrismaClient();
 
