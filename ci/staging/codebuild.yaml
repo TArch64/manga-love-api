@@ -21,143 +21,134 @@ phases:
       - export APP_VERSION="$CODEBUILD_BUILD_NUMBER"
       - export CR_BASE="$CR_HOST/$CR_USERNAME"
 
-      - export API_IMAGE="$CR_BASE/manga-love-api"
+      - export APP_IMAGE="$CR_BASE/manga-love-api"
 
-      - docker pull $API_IMAGE-base:latest
-      - docker pull $API_IMAGE-gateway:latest
-      - docker pull $API_IMAGE-auth:latest
-      - docker pull $API_IMAGE-mailer:latest
-      - docker pull $API_IMAGE-work:latest
-      - docker pull $API_IMAGE-uploader:latest
-      - docker pull $API_IMAGE-bull-admin:latest
-      - docker pull $API_IMAGE-nginx:latest
+      - docker pull $APP_IMAGE-base:latest
+      - docker pull $APP_IMAGE-gateway:latest
+      - docker pull $APP_IMAGE-auth:latest
+      - docker pull $APP_IMAGE-mailer:latest
+      - docker pull $APP_IMAGE-work:latest
+      - docker pull $APP_IMAGE-uploader:latest
+      - docker pull $APP_IMAGE-bull-admin:latest
+      - docker pull $APP_IMAGE-nginx:latest
 
 
   build:
     commands:
       - >
         docker build \
-          --tag api-base \
+          --tag $APP_IMAGE-base:latest \
+          --tag $APP_IMAGE-base:$APP_VERSION \
           --file ci/$ENV/build/api-base.Dockerfile \
-          --cache-from $API_IMAGE-base:latest \
+          --cache-from $APP_IMAGE-base:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-gateway \
+          --tag $APP_IMAGE-gateway:latest \
+          --tag $APP_IMAGE-gateway:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-gateway:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-gateway:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=gateway \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-auth \
+          --tag $APP_IMAGE-auth:latest \
+          --tag $APP_IMAGE-auth:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-auth:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-auth:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=auth \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-mailer \
+          --tag $APP_IMAGE-mailer:latest \
+          --tag $APP_IMAGE-mailer:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-mailer:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-mailer:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=mailer \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-work \
+          --tag $APP_IMAGE-work:latest \
+          --tag $APP_IMAGE-work:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-work:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-work:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=work \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-uploader \
+          --tag $APP_IMAGE-uploader:latest \
+          --tag $APP_IMAGE-uploader:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-uploader:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-uploader:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=uploader \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --pull=false \
-          --tag api-bull-admin \
+          --tag $APP_IMAGE-bull-admin:latest \
+          --tag $APP_IMAGE-bull-admin:$APP_VERSION \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base \
-          --cache-from $API_IMAGE-bull-admin:latest \
+          --cache-from $APP_IMAGE-base:$APP_VERSION \
+          --cache-from $APP_IMAGE-bull-admin:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           --build-arg APP_NAME=bull-admin \
+          --build-arg APP_IMAGE \
+          --build-arg APP_VERSION \
           .
 
       - >
         docker build \
-          --tag api-nginx \
+          --tag $APP_IMAGE-nginx:latest \
+          --tag $APP_IMAGE-nginx:$APP_VERSION \
           --file ci/$ENV/build/nginx.Dockerfile \
-          --cache-from $API_IMAGE-nginx \
+          --cache-from $APP_IMAGE-nginx \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           .
 
   post_build:
     commands:
-      - docker tag api-base $API_IMAGE-base:latest
-      - docker tag api-base $API_IMAGE-base:$APP_VERSION
-      - docker push -a $API_IMAGE-base
-
-      - docker tag api-base $API_IMAGE-gateway:latest
-      - docker tag api-base $API_IMAGE-gateway:$APP_VERSION
-      - docker push -a $API_IMAGE-gateway
-
-      - docker tag api-base $API_IMAGE-auth:latest
-      - docker tag api-base $API_IMAGE-auth:$APP_VERSION
-      - docker push -a $API_IMAGE-auth
-
-      - docker tag api-base $API_IMAGE-mailer:latest
-      - docker tag api-base $API_IMAGE-mailer:$APP_VERSION
-      - docker push -a $API_IMAGE-mailer
-
-      - docker tag api-base $API_IMAGE-work:latest
-      - docker tag api-base $API_IMAGE-work:$APP_VERSION
-      - docker push -a $API_IMAGE-work
-
-      - docker tag api-base $API_IMAGE-uploader:latest
-      - docker tag api-base $API_IMAGE-uploader:$APP_VERSION
-      - docker push -a $API_IMAGE-uploader
-
-      - docker tag api-base $API_IMAGE-bull-admin:latest
-      - docker tag api-base $API_IMAGE-bull-admin:$APP_VERSION
-      - docker push -a $API_IMAGE-bull-admin
-
-      - docker tag api-base $API_IMAGE-nginx:latest
-      - docker tag api-base $API_IMAGE-nginx:$APP_VERSION
-      - docker push -a $API_IMAGE-nginx
+      - docker push -a $APP_IMAGE-base
+      - docker push -a $APP_IMAGE-gateway
+      - docker push -a $APP_IMAGE-auth
+      - docker push -a $APP_IMAGE-mailer
+      - docker push -a $APP_IMAGE-work
+      - docker push -a $APP_IMAGE-uploader
+      - docker push -a $APP_IMAGE-bull-admin
+      - docker push -a $APP_IMAGE-nginx
 
       - mkdir $ARTIFACT_DIR
       - echo $APP_VERSION >> $ARTIFACT_DIR/app-version

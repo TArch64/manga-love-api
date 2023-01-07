@@ -1,7 +1,9 @@
 ARG CR_LABEL
 ARG APP_NAME
+ARG APP_IMAGE
+ARG APP_VERSION
 
-FROM api-base
+FROM $APP_IMAGE-base:$APP_VERSION
 LABEL org.opencontainers.image.source $CR_LABEL
 
 RUN npm run build:prod $APP_NAME
