@@ -14,7 +14,7 @@ x-api-common: &api_common
 
 services:
   nginx:
-    image: ${API_IMAGE}/nginx:${APP_VERSION}
+    image: ${APP_IMAGE}/nginx:${APP_VERSION}
     networks:
       - love
     restart: always
@@ -28,7 +28,7 @@ services:
 
   gateway:
     <<: *api_common
-    image: ${API_IMAGE}/gateway:${APP_VERSION}
+    image: ${APP_IMAGE}/gateway:${APP_VERSION}
     command: node ./dist/apps/gateway/apps/gateway/src/main
     links:
       - auth
@@ -36,7 +36,7 @@ services:
 
   auth:
     <<: *api_common
-    image: ${API_IMAGE}/auth:${APP_VERSION}
+    image: ${APP_IMAGE}/auth:${APP_VERSION}
     command: node ./dist/apps/auth/apps/auth/src/main
     links:
       - mailer
@@ -44,24 +44,24 @@ services:
 
   mailer:
     <<: *api_common
-    image: ${API_IMAGE}/mailer:${APP_VERSION}
+    image: ${APP_IMAGE}/mailer:${APP_VERSION}
     command: node ./dist/apps/mailer/apps/mailer/src/main
 
   work:
     <<: *api_common
-    image: ${API_IMAGE}/work:${APP_VERSION}
+    image: ${APP_IMAGE}/work:${APP_VERSION}
     command: node ./dist/apps/work/apps/work/src/main
     links:
       - uploader
 
   uploader:
     <<: *api_common
-    image: ${API_IMAGE}/uploader:${APP_VERSION}
+    image: ${APP_IMAGE}/uploader:${APP_VERSION}
     command: node ./dist/apps/uploader/apps/uploader/src/main
 
   bull-admin:
     <<: *api_common
-    image: ${API_IMAGE}/bull-admin:${APP_VERSION}
+    image: ${APP_IMAGE}/bull-admin:${APP_VERSION}
     command: node ./dist/apps/bull-admin/apps/bull-admin/src/main
 
   postgres:
