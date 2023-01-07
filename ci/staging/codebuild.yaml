@@ -38,7 +38,7 @@ phases:
         docker build \
           --tag api-gateway \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-gateway:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
@@ -49,7 +49,7 @@ phases:
         docker build \
           --tag api-auth \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-auth:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
@@ -60,7 +60,7 @@ phases:
         docker build \
           --tag api-mailer \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-mailer:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
@@ -71,7 +71,7 @@ phases:
         docker build \
           --tag api-work \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-work:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
@@ -82,7 +82,7 @@ phases:
         docker build \
           --tag api-uploader \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-uploader:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
@@ -93,7 +93,7 @@ phases:
         docker build \
           --tag api-bull-admin \
           --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from api-base:latest \
+          --cache-from api-base \
           --cache-from $API_IMAGE-bull-admin:latest \
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
