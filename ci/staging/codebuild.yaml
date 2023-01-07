@@ -19,18 +19,16 @@ phases:
       - echo $CR_PASSWORD | docker login $CR_HOST -u $CR_USERNAME --password-stdin
 
       - export APP_VERSION="$CODEBUILD_BUILD_NUMBER"
-      - export CR_BASE="$CR_HOST/$CR_USERNAME"
+      - export APP_IMAGE="$CR_HOST/$CR_USERNAME/manga-love-api"
 
-      - export APP_IMAGE="$CR_BASE/manga-love-api"
-
-      - docker pull $APP_IMAGE/base:latest || false
-      - docker pull $APP_IMAGE/gateway:latest || false
-      - docker pull $APP_IMAGE/auth:latest || false
-      - docker pull $APP_IMAGE/mailer:latest || false
-      - docker pull $APP_IMAGE/work:latest || false
-      - docker pull $APP_IMAGE/uploader:latest || false
-      - docker pull $APP_IMAGE/bull-admin:latest || false
-      - docker pull $APP_IMAGE/nginx:latest || false
+      - docker pull $APP_IMAGE/base:latest || true
+      - docker pull $APP_IMAGE/gateway:latest || true
+      - docker pull $APP_IMAGE/auth:latest || true
+      - docker pull $APP_IMAGE/mailer:latest || true
+      - docker pull $APP_IMAGE/work:latest || true
+      - docker pull $APP_IMAGE/uploader:latest || true
+      - docker pull $APP_IMAGE/bull-admin:latest || true
+      - docker pull $APP_IMAGE/nginx:latest || true
 
 
 
