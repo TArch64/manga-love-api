@@ -14,6 +14,8 @@ model User {
   email       String          @unique @db.VarChar(255)
   emailStatus UserEmailStatus @default(UNVERIFIED)
   password    String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt @default(now())
   actions     UserAction[]
 }
 
@@ -23,10 +25,12 @@ enum UserEmailStatus {
 }
 
 model UserAction {
-  id     String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  type   UserActionType
-  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String         @db.Uuid
+  id        String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type      UserActionType
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String         @db.Uuid
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt @default(now())
 
   @@unique([userId, type])
 }
@@ -42,14 +46,19 @@ model Work {
   categories  WorkCategoryOnWork[]
   thumbnail   Illustration         @relation(fields: [thumbnailId], references: [id])
   thumbnailId String               @unique @db.Uuid
-  position    Int                  @unique @default(autoincrement())
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt @default(now())
+
+  @@index([titleEn, titleUa])
 }
 
 model WorkCategory {
-  id     String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  textEn String               @default("") @db.VarChar(255)
-  textUa String               @default("") @db.VarChar(255)
-  works  WorkCategoryOnWork[]
+  id        String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  textEn    String               @default("") @db.VarChar(255)
+  textUa    String               @default("") @db.VarChar(255)
+  works     WorkCategoryOnWork[]
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt @default(now())
 }
 
 model WorkCategoryOnWork {
@@ -68,6 +77,8 @@ model Illustration {
   originalHeight Int
   filename       String             @db.VarChar(255)
   thumbnailWork  Work?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt @default(now())
 }
 
 enum IllustrationStatus {

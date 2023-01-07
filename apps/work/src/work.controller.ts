@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { Work } from '@manga-love-api/database';
-import { ICreateWorkRequest, IFilterWorksRequest, IFilterWorksResponse } from './types';
+import { ICreateWorkRequest, IFilterWorksRequest } from './types';
 import { CreateWorkService, FilterWorksService } from './services';
 import { WorkCommand } from './work.command';
 
@@ -19,7 +19,7 @@ export class WorkController {
     }
 
     @MessagePattern(WorkCommand.FILTER_WORKS)
-    public async filterWorks(filter: IFilterWorksRequest): Promise<IFilterWorksResponse> {
+    public async filterWorks(filter: IFilterWorksRequest): Promise<Work[]> {
         return this.filterWorksService.filter(filter);
     }
 }

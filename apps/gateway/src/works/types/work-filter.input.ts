@@ -1,14 +1,15 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { GraphQLInt } from 'graphql/type';
 import { IFilterWorksRequest } from '@manga-love-api/work/types';
-import { ConstraintFormat, ConstraintValidator } from '../../common/decorators';
+import { ConstraintValidator } from '../../common/decorators';
 
 @InputType()
 export class WorkFilterInput implements IFilterWorksRequest {
-    @Field({ nullable: true })
-    @ConstraintValidator({ format: ConstraintFormat.UUID })
-    public cursor?: string;
+    @Field((returns) => GraphQLInt)
+    @ConstraintValidator({ min: 0 })
+    public offset: number;
 
     @Field((returns) => GraphQLInt)
+    @ConstraintValidator({ min: 1 })
     public count: number;
 }

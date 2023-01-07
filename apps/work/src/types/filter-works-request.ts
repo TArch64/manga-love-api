@@ -1,4 +1,4 @@
 export interface IFilterWorksRequest {
-    cursor?: string;
+    offset: number;
     count: number;
 }

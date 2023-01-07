@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { Microservices } from '../gateway.microservices';
 import { UploadReceiverService } from '../common/services';
 import { IllustrationObject } from '../illustrations';
-import { CreateWorkInput, WorkCategoryObject, WorkFilterInput, WorkFilterObject, WorkObject } from './types';
+import { CreateWorkInput, WorkCategoryObject, WorkFilterInput, WorkObject } from './types';
 
 @Resolver((of) => WorkObject)
 export class WorksResolver {
@@ -30,8 +30,8 @@ export class WorksResolver {
         return this.workMicroservice.send(WorkCommand.CREATE_WORK, request);
     }
 
-    @Query((returns) => WorkFilterObject)
-    public works(@Args('filter') filter: WorkFilterInput): Observable<WorkFilterObject> {
+    @Query((returns) => [WorkObject])
+    public works(@Args('filter') filter: WorkFilterInput): Observable<WorkObject[]> {
         return this.workMicroservice.send(WorkCommand.FILTER_WORKS, filter);
     }
 

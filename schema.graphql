@@ -32,7 +32,7 @@ type Mutation {
 type Query {
   currentUser: UserObject!
   workCategories: [WorkCategoryObject!]!
-  works(filter: WorkFilterInput!): WorkFilterObject!
+  works(filter: WorkFilterInput!): [WorkObject!]!
 }
 
 input SignInInput {
@@ -63,12 +63,7 @@ type WorkCategoryObject {
 
 input WorkFilterInput {
   count: Int!
-  cursor: String
-}
-
-type WorkFilterObject {
-  cursor: String
-  list: [WorkObject!]!
+  offset: Int!
 }
 
 type WorkObject {
