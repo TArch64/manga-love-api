@@ -14,4 +14,5 @@ export interface IFilterWorksRequest {
     count: number;
     sort: IFilterWorksSort;
     text?: string;
+    categories?: string[];
 }

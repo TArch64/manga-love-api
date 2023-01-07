@@ -9,7 +9,7 @@ type AuthObject {
 }
 
 input CreateWorkInput {
-  categories: [String!]!
+  categories: [UUID!]!
   illustration: Upload!
   titleEn: String!
   titleUa: String!
@@ -21,7 +21,7 @@ enum FieldSortOrder {
 }
 
 type IllustrationObject {
-  id: String!
+  id: UUID!
   originalHeight: Int!
   originalWidth: Int!
   status: String!
@@ -36,7 +36,7 @@ type Mutation {
 
 type Query {
   currentUser: UserObject!
-  work(id: String!): WorkObject!
+  work(id: UUID!): WorkObject!
   workCategories: [WorkCategoryObject!]!
   works(filter: WorkFilterInput!): [WorkObject!]!
 }
@@ -52,22 +52,28 @@ input SignUpInput {
   username: String!
 }
 
+"""
+The `UUID` scalar type represents UUID values as specified by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
 
 type UserObject {
   email: String!
-  id: String!
+  id: UUID!
   username: String!
 }
 
 type WorkCategoryObject {
-  id: String!
+  id: UUID!
   textEn: String!
   textUa: String!
 }
 
 input WorkFilterInput {
+  categories: [UUID!]
   count: Int!
   offset: Int!
   sort: WorkFilterSortInput! = {direction: DESC, field: UPDATED_AT}
@@ -81,7 +87,7 @@ input WorkFilterSortInput {
 
 type WorkObject {
   categories: [WorkCategoryObject!]!
-  id: String!
+  id: UUID!
   thumbnail: IllustrationObject!
   titleEn: String!
   titleUa: String!

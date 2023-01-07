@@ -11,7 +11,6 @@ export enum ConstraintFormat {
     IP_V4 = 'ipv4',
     IP_V6 = 'ipv6',
     URI = 'uri',
-    UUID = 'uuid',
 }
 
 interface ConstraintOptions {

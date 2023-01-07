@@ -1,10 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IllustrationObject } from '../../illustrations';
+import { GraphQLUUID } from '../../common/types';
 import { WorkCategoryObject } from './work-category.object';
 
 @ObjectType()
 export class WorkObject {
-    @Field()
+    @Field((returns) => GraphQLUUID)
     public id: string;
 
     @Field()

@@ -16,6 +16,7 @@ import { UsersResolver } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorkCategoriesResolver, WorksResolver } from './works';
 import { UploadReceiverService } from './common/services';
+import { GraphQLUUID } from './common/types';
 import { IllustrationResolver } from './illustrations';
 
 registerEnumType(WorkSortField, { name: 'WorkSortField' });
@@ -33,13 +34,16 @@ interface GraphqlContext {
             useFactory: () => ({
                 autoSchemaFile: path.resolve(process.cwd(), 'schema.graphql'),
                 sortSchema: true,
+                playground: false,
+                introspection: true,
+                context: ({ req, res }): GraphqlContext => ({ req, res }),
                 transformSchema: constraintDirective(),
                 buildSchemaOptions: {
                     directives: [constraintDirectiveTypeDefsObj],
                 },
-                playground: false,
-                introspection: true,
-                context: ({ req, res }): GraphqlContext => ({ req, res }),
+                resolvers: {
+                    UUID: GraphQLUUID,
+                },
             }),
         }),
         EnvironmentModule,

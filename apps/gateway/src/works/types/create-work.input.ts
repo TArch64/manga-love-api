@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { ICreateWorkRequest } from '@manga-love-api/work/types';
-import { ConstraintFormat, ConstraintValidator } from '../../common/decorators';
-import { GraphQLUpload, FileUpload } from '../../common/types';
+import { ConstraintValidator } from '../../common/decorators';
+import { GraphQLUpload, GraphQLUUID, FileUpload } from '../../common/types';
 
 @InputType()
 export class CreateWorkInput implements Omit<ICreateWorkRequest, 'illustration'> {
@@ -11,8 +11,7 @@ export class CreateWorkInput implements Omit<ICreateWorkRequest, 'illustration'>
     @Field()
     public titleUa: string;
 
-    @Field((returns) => [String])
-    @ConstraintValidator({ format: ConstraintFormat.UUID, minItems: 1 })
+    @Field((returns) => [GraphQLUUID])
     public categories: string[];
 
     @Field((returns) => GraphQLUpload)

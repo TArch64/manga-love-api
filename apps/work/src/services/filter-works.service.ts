@@ -11,7 +11,7 @@ export class FilterWorksService {
         return this.prisma.work.findMany({
             skip: filter.offset,
             take: filter.count,
-            where: this.buildSearchQuery(filter.text),
+            where: this.buildSearchQuery(filter),
             orderBy: this.buildSortQuery(filter.sort),
         });
     }
@@ -20,7 +20,23 @@ export class FilterWorksService {
         return { [sort.field]: sort.direction };
     }
 
-    private buildSearchQuery(text: string): Prisma.WorkFindManyArgs['where'] {
+    private buildSearchQuery(filter: IFilterWorksRequest): Prisma.WorkFindManyArgs['where'] {
+        const textQuery = this.buildTextQuery(filter.text);
+        const categoriesQuery = this.buildCategoriesQuery(filter.categories);
+
+        if (textQuery && categoriesQuery) {
+            return {
+                AND: [
+                    textQuery,
+                    categoriesQuery,
+                ],
+            };
+        }
+
+        return textQuery || categoriesQuery;
+    }
+
+    private buildTextQuery(text: string): Prisma.WorkFindManyArgs['where'] {
         if (!text) return;
 
         return {
@@ -38,6 +54,20 @@ export class FilterWorksService {
                     },
                 },
             ],
+        };
+    }
+
+    private buildCategoriesQuery(categories: string[]): Prisma.WorkFindManyArgs['where'] {
+        if (!categories) return undefined;
+
+        return {
+            categories: {
+                some: {
+                    categoryId: {
+                        in: categories,
+                    },
+                },
+            },
         };
     }
 }

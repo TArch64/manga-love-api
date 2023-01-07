@@ -1,9 +1,8 @@
 import { ArgsType, Field } from '@nestjs/graphql';
-import { ConstraintFormat, ConstraintValidator } from '../../common/decorators';
+import { GraphQLUUID } from '../../common/types';
 
 @ArgsType()
 export class WorkGetArgs {
-    @Field()
-    @ConstraintValidator({ format: ConstraintFormat.UUID })
+    @Field((returns) => GraphQLUUID)
     public id: string;
 }

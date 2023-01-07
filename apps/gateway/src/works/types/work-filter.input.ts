@@ -2,6 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { GraphQLInt } from 'graphql/type';
 import { IFilterWorksRequest, IFilterWorksSort } from '@manga-love-api/work/types';
 import { ConstraintValidator } from '../../common/decorators';
+import { GraphQLUUID } from '../../common/types';
 import { WorkFilterSortInput } from './work-filter-sort.input';
 
 @InputType()
@@ -22,4 +23,7 @@ export class WorkFilterInput implements IFilterWorksRequest {
     @Field({ nullable: true })
     @ConstraintValidator({ minLength: 3, maxLength: 255 })
     public text?: string;
+
+    @Field((returns) => [GraphQLUUID], { nullable: true })
+    public categories: string[];
 }

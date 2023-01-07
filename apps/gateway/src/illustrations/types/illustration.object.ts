@@ -1,10 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IllustrationStatus } from '@manga-love-api/database';
 import { GraphQLInt } from 'graphql/type';
+import { GraphQLUUID } from '../../common/types';
 
 @ObjectType()
 export class IllustrationObject {
-    @Field()
+    @Field((returns) => GraphQLUUID)
     public id: string;
 
     @Field(() => GraphQLInt)

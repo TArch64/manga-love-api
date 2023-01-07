@@ -1,8 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { GraphQLUUID } from '../../common/types';
 
 @ObjectType()
 export class WorkCategoryObject {
-    @Field()
+    @Field((returns) => GraphQLUUID)
     public id: string;
 
     @Field()
