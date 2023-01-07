@@ -33,6 +33,7 @@ phases:
       - docker pull $APP_IMAGE-nginx:latest
 
 
+
   build:
     commands:
       - >
@@ -44,6 +45,7 @@ phases:
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           .
+      - docker push -a $APP_IMAGE-base
 
       - >
         docker build \
@@ -58,6 +60,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-gateway
 
       - >
         docker build \
@@ -72,6 +75,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-auth
 
       - >
         docker build \
@@ -86,6 +90,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-mailer
 
       - >
         docker build \
@@ -100,6 +105,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-work
 
       - >
         docker build \
@@ -114,6 +120,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-uploader
 
       - >
         docker build \
@@ -128,6 +135,7 @@ phases:
           --build-arg APP_IMAGE \
           --build-arg APP_VERSION \
           .
+      - docker push -a $APP_IMAGE-bull-admin
 
       - >
         docker build \
@@ -138,18 +146,12 @@ phases:
           --build-arg BUILDKIT_INLINE_CACHE \
           --build-arg CR_LABEL \
           .
+      - docker push -a $APP_IMAGE-nginx
+
+
 
   post_build:
     commands:
-      - docker push -a $APP_IMAGE-base
-      - docker push -a $APP_IMAGE-gateway
-      - docker push -a $APP_IMAGE-auth
-      - docker push -a $APP_IMAGE-mailer
-      - docker push -a $APP_IMAGE-work
-      - docker push -a $APP_IMAGE-uploader
-      - docker push -a $APP_IMAGE-bull-admin
-      - docker push -a $APP_IMAGE-nginx
-
       - mkdir $ARTIFACT_DIR
       - echo $APP_VERSION >> $ARTIFACT_DIR/app-version
       - envsubst < ci/$ENV/docker-compose.yaml >> $ARTIFACT_DIR/docker-compose.yaml
