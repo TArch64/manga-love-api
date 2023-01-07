@@ -13,8 +13,7 @@ env:
 phases:
   pre_build:
     commands:
-      - echo "curl $SECRETS_LOADER_DOWNLOAD -s -o $SECRETS_LOADER"
-      - curl $SECRETS_LOADER_DOWNLOAD -s -o $SECRETS_LOADER
+      - curl $SECRETS_LOADER_DOWNLOAD -o $SECRETS_LOADER
       - chmod +x $SECRETS_LOADER
       - export $($SECRETS_LOADER get -r $AWS_REGION -p manga-love-api/cr) > /dev/null
       - echo $CR_PASSWORD | docker login $CR_HOST -u $CR_USERNAME --password-stdin
