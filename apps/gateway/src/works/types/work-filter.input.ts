@@ -18,4 +18,8 @@ export class WorkFilterInput implements IFilterWorksRequest {
         defaultValue: WorkFilterSortInput.default,
     })
     public sort: IFilterWorksSort;
+
+    @Field({ nullable: true })
+    @ConstraintValidator({ minLength: 3, maxLength: 255 })
+    public text?: string;
 }

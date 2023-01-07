@@ -13,4 +13,5 @@ export interface IFilterWorksRequest {
     offset: number;
     count: number;
     sort: IFilterWorksSort;
+    text?: string;
 }

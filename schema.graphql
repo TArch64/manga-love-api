@@ -71,6 +71,7 @@ input WorkFilterInput {
   count: Int!
   offset: Int!
   sort: WorkFilterSortInput! = {direction: DESC, field: UPDATED_AT}
+  text: String
 }
 
 input WorkFilterSortInput {
