@@ -46,7 +46,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-gateway \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
@@ -58,7 +58,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-auth \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
@@ -70,7 +70,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-mailer \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
@@ -82,7 +82,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-work \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
@@ -94,7 +94,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-uploader \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
@@ -106,7 +106,7 @@ phases:
 
       - >
         docker build \
-          --pull false \
+          --pull=false \
           --tag api-bull-admin \
           --file ci/$ENV/build/microservice.Dockerfile \
           --cache-from api-base \
