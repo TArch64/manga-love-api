@@ -23,14 +23,14 @@ phases:
 
       - export APP_IMAGE="$CR_BASE/manga-love-api"
 
-      - docker pull $APP_IMAGE/base:latest
-      - docker pull $APP_IMAGE/gateway:latest
-      - docker pull $APP_IMAGE/auth:latest
-      - docker pull $APP_IMAGE/mailer:latest
-      - docker pull $APP_IMAGE/work:latest
-      - docker pull $APP_IMAGE/uploader:latest
-      - docker pull $APP_IMAGE/bull-admin:latest
-      - docker pull $APP_IMAGE/nginx:latest
+      - docker pull $APP_IMAGE/base:latest || false
+      - docker pull $APP_IMAGE/gateway:latest || false
+      - docker pull $APP_IMAGE/auth:latest || false
+      - docker pull $APP_IMAGE/mailer:latest || false
+      - docker pull $APP_IMAGE/work:latest || false
+      - docker pull $APP_IMAGE/uploader:latest || false
+      - docker pull $APP_IMAGE/bull-admin:latest || false
+      - docker pull $APP_IMAGE/nginx:latest || false
 
 
 
