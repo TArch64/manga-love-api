@@ -4,7 +4,8 @@
 /.idea
 .vscode/*
 .env
-/tmp
+/tmp/*
+!/tmp/.keep
 prisma/migrations/migration_lock.toml
 libs/database/src/client
 .sshconfig
