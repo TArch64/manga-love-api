@@ -12,6 +12,7 @@ export class IllustrationResolver {
     public url(@Parent() illustration: IllustrationObject): string {
         return [
             this.environment.aws.s3.cloudfrontOrigin,
+            'illustrations',
             illustration.id,
             illustration.filename,
         ].join('/');

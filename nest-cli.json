@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/manga-love-api/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": false,
@@ -13,16 +12,6 @@
     "watchAssets": true
   },
   "monorepo": true,
-  "root": "apps/manga-love-api",
-  "generateOptions": {
-    "spec": {
-      "lib": false,
-      "app": false,
-      "application": false,
-      "library": false,
-      "sub-app": false
-    }
-  },
   "projects": {
     "gateway": {
       "type": "application",
@@ -30,7 +19,13 @@
       "entryFile": "main",
       "sourceRoot": "apps/gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/gateway/tsconfig.app.json"
+        "tsConfigPath": "apps/gateway/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../../../libs/database/src/prisma/client/**/*",
+            "outDir": "dist/apps/gateway/libs/database/src"
+          }
+        ]
       }
     },
     "core": {
@@ -57,7 +52,13 @@
       "entryFile": "main",
       "sourceRoot": "apps/auth/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/auth/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../../../libs/database/src/prisma/client/**/*",
+            "outDir": "dist/apps/auth/libs/database/src"
+          }
+        ]
       }
     },
     "mailer": {
@@ -84,7 +85,13 @@
       "entryFile": "main",
       "sourceRoot": "apps/work/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/work/tsconfig.app.json"
+        "tsConfigPath": "apps/work/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../../../libs/database/src/prisma/client/**/*",
+            "outDir": "dist/apps/work/libs/database/src"
+          }
+        ]
       }
     },
     "uploader": {
@@ -93,7 +100,13 @@
       "entryFile": "main",
       "sourceRoot": "apps/uploader/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/uploader/tsconfig.app.json"
+        "tsConfigPath": "apps/uploader/tsconfig.app.json",
+        "assets": [
+          {
+            "include": "../../../libs/database/src/prisma/client/**/*",
+            "outDir": "dist/apps/uploader/libs/database/src"
+          }
+        ]
       }
     },
     "aws": {

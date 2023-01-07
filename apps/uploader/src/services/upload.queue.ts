@@ -29,7 +29,7 @@ export class UploadQueue {
     }
 
     private async uploadToStorage(id: string, buffer: Buffer, filename: string, mimetype: string): Promise<void> {
-        const path = `illustrations/${id}/${(filename)}`;
+        const path = `illustrations/${id}/${filename}`;
         await this.s3Service.put(path, buffer, { mimetype });
     }
 

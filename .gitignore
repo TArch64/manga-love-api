@@ -4,5 +4,6 @@
 /.idea
 .vscode/*
 .env
-prisma/migrations/migration_lock.toml
 /tmp
+prisma/migrations/migration_lock.toml
+libs/database/src/prisma/client
