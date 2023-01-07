@@ -5,7 +5,7 @@ env:
     ENV: "staging"
     DOCKER_BUILDKIT: 1
     BUILDKIT_INLINE_CACHE: 1
-    CR_LABEL: "https://github.com/tarch64/manga-love-api"
+    CR_LABEL: "https://github.com/TArch64/manga-love-api"
     SECRETS_LOADER_DOWNLOAD: https://raw.githubusercontent.com/volunteer-delivery/secrets-loader/main/build/linux-arm64
     SECRETS_LOADER: "tmp/secrets-loader"
     ARTIFACT_DIR: "tmp/artifact"
