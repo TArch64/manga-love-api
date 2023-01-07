@@ -5,6 +5,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start:dev": "nest start --watch --preserveWatchOutput",
+    "build:prod": "nest build",
     "prisma": "prisma",
     "console": "ts-node ./libs/database/src/console",
     "prepare": "husky install"

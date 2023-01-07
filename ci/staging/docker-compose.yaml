@@ -1,0 +1,95 @@
+version: '3.8'
+
+x-api-common: &api_common
+  restart: always
+  volumes:
+    - data_tmp:/app/tmp
+  networks:
+    - love
+  env_file:
+    - ./.env
+  depends_on:
+    - postgres
+    - redis
+
+services:
+  nginx:
+    image: ${API_IMAGE}-nginx:${APP_VERSION}
+    networks:
+      - love
+    restart: always
+    depends_on:
+      - gateway
+      - auth
+      - mailer
+      - work
+      - uploader
+      - bull-admin
+
+  gateway:
+    <<: *api_common
+    image: ${API_IMAGE}-gateway:${APP_VERSION}
+    command: node ./dist/apps/gateway/apps/gateway/src/main
+    links:
+      - auth
+      - work
+
+  auth:
+    <<: *api_common
+    image: ${API_IMAGE}-auth:${APP_VERSION}
+    command: node ./dist/apps/auth/apps/auth/src/main
+    links:
+      - mailer
+      - uploader
+
+  mailer:
+    <<: *api_common
+    image: ${API_IMAGE}-mailer:${APP_VERSION}
+    command: node ./dist/apps/mailer/apps/mailer/src/main
+
+  work:
+    <<: *api_common
+    image: ${API_IMAGE}-work:${APP_VERSION}
+    command: node ./dist/apps/work/apps/work/src/main
+    links:
+      - uploader
+
+  uploader:
+    <<: *api_common
+    image: ${API_IMAGE}-uploader:${APP_VERSION}
+    command: node ./dist/apps/uploader/apps/uploader/src/main
+
+  bull-admin:
+    <<: *api_common
+    image: ${API_IMAGE}-bull-admin:${APP_VERSION}
+    command: node ./dist/apps/bull-admin/apps/bull-admin/src/main
+
+  postgres:
+    image: postgres:15.1-alpine
+    volumes:
+      - data_psql:/var/lib/postgresql/data
+    networks:
+      - love
+    env_file:
+      - ./.env
+
+  redis:
+    container_name: manga_love_redis
+    image: redis:7.0.7-alpine
+    volumes:
+      - data_redis:/data
+    networks:
+      - love
+    env_file:
+      - ./.env
+
+volumes:
+  data_psql:
+    driver: local
+  data_redis:
+    driver: local
+  data_tmp:
+    driver: local
+
+networks:
+  love:
