@@ -25,6 +25,8 @@ services:
       - work
       - uploader
       - bull-admin
+    ports:
+      - '80:80'
 
   gateway:
     <<: *api_common
