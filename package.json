@@ -9,11 +9,11 @@
     "build:seed": "tsc -P tsconfig.seed.json",
     "build:console": "tsc -P tsconfig.console.json",
     "prisma": "prisma",
-    "console": "ts-node libs/database/src/console",
+    "console": "scripts/exec-console.sh",
     "prepare": "husky install"
   },
   "prisma": {
-    "seed": "ts-node libs/database/src/seeds/execute"
+    "seed": "scripts/exec-seed.sh"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.245.0",
