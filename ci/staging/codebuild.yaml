@@ -20,129 +20,71 @@ phases:
 
       - export APP_VERSION="$CODEBUILD_BUILD_NUMBER"
       - export APP_IMAGE="$CR_HOST/$CR_USERNAME/manga-love-api"
+      - export APP_NAMES=("gateway", "auth", "mailer", "work", "uploader", "bull-admin")
 
-      - docker pull $APP_IMAGE/base:latest || true
-      - docker pull $APP_IMAGE/gateway:latest || true
-      - docker pull $APP_IMAGE/auth:latest || true
-      - docker pull $APP_IMAGE/mailer:latest || true
-      - docker pull $APP_IMAGE/work:latest || true
-      - docker pull $APP_IMAGE/uploader:latest || true
-      - docker pull $APP_IMAGE/bull-admin:latest || true
+      - docker pull $APP_IMAGE/app-node:latest || true
+      - docker pull $APP_IMAGE/app-source:latest || true
       - docker pull $APP_IMAGE/nginx:latest || true
 
+      - |
+        for APP_NAME in ${APP_NAMES[@]}; do
+          docker pull $APP_IMAGE/$APP_NAME:latest || true;
+        done;
 
 
   build:
     commands:
-      - >
-        docker build \
-          --tag $APP_IMAGE/base:latest \
-          --tag $APP_IMAGE/base:$APP_VERSION \
-          --file ci/$ENV/build/api-base.Dockerfile \
-          --cache-from $APP_IMAGE/base:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
+      - |
+        docker build
+          --tag $APP_IMAGE/app-node:latest
+          --tag $APP_IMAGE/app-node:$APP_VERSION
+          --file ci/$ENV/build/app-node.Dockerfile
+          --cache-from $APP_IMAGE/app-node:latest
+          --build-arg BUILDKIT_INLINE_CACHE
+          --build-arg CR_LABEL
           .
-      - docker push -a $APP_IMAGE/base
+      - docker push -a $APP_IMAGE/app-node
 
-      - >
-        docker build \
-          --tag $APP_IMAGE/gateway:latest \
-          --tag $APP_IMAGE/gateway:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/gateway:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=gateway \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
+      - |
+        docker build
+          --tag $APP_IMAGE/app-source:latest
+          --tag $APP_IMAGE/app-source:$APP_VERSION
+          --file ci/$ENV/build/app-source.Dockerfile
+          --cache-from $APP_IMAGE/app-node:latest
+          --cache-from $APP_IMAGE/app-source:latest
+          --build-arg BUILDKIT_INLINE_CACHE
+          --build-arg CR_LABEL
+          --build-arg APP_IMAGE
+          --build-arg APP_VERSION
           .
-      - docker push -a $APP_IMAGE/gateway
+      - docker push -a $APP_IMAGE/app-source
 
-      - >
-        docker build \
-          --tag $APP_IMAGE/auth:latest \
-          --tag $APP_IMAGE/auth:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/auth:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=auth \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
-          .
-      - docker push -a $APP_IMAGE/auth
+      - |
+        for APP_NAME in ${APP_NAMES[@]}; do
+          docker build
+            --tag $APP_IMAGE/$APP_NAME:latest
+            --tag $APP_IMAGE/$APP_NAME:$APP_VERSION
+            --file ci/$ENV/build/microservice.Dockerfile
+            --cache-from $APP_IMAGE/app-node:$APP_VERSION
+            --cache-from $APP_IMAGE/app-sources:$APP_VERSION
+            --cache-from $APP_IMAGE/$APP_NAME:latest
+            --build-arg BUILDKIT_INLINE_CACHE
+            --build-arg CR_LABEL
+            --build-arg APP_NAME
+            --build-arg APP_IMAGE
+            --build-arg APP_VERSION
+            .;
+          docker push -a $APP_IMAGE/$APP_NAME;
+        done;
 
-      - >
-        docker build \
-          --tag $APP_IMAGE/mailer:latest \
-          --tag $APP_IMAGE/mailer:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/mailer:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=mailer \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
-          .
-      - docker push -a $APP_IMAGE/mailer
-
-      - >
-        docker build \
-          --tag $APP_IMAGE/work:latest \
-          --tag $APP_IMAGE/work:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/work:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=work \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
-          .
-      - docker push -a $APP_IMAGE/work
-
-      - >
-        docker build \
-          --tag $APP_IMAGE/uploader:latest \
-          --tag $APP_IMAGE/uploader:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/uploader:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=uploader \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
-          .
-      - docker push -a $APP_IMAGE/uploader
-
-      - >
-        docker build \
-          --tag $APP_IMAGE/bull-admin:latest \
-          --tag $APP_IMAGE/bull-admin:$APP_VERSION \
-          --file ci/$ENV/build/microservice.Dockerfile \
-          --cache-from $APP_IMAGE/base:$APP_VERSION \
-          --cache-from $APP_IMAGE/bull-admin:latest \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
-          --build-arg APP_NAME=bull-admin \
-          --build-arg APP_IMAGE \
-          --build-arg APP_VERSION \
-          .
-      - docker push -a $APP_IMAGE/bull-admin
-
-      - >
-        docker build \
-          --tag $APP_IMAGE/nginx:latest \
-          --tag $APP_IMAGE/nginx:$APP_VERSION \
-          --file ci/$ENV/build/nginx.Dockerfile \
-          --cache-from $APP_IMAGE/nginx \
-          --build-arg BUILDKIT_INLINE_CACHE \
-          --build-arg CR_LABEL \
+      - |
+        docker build
+          --tag $APP_IMAGE/nginx:latest
+          --tag $APP_IMAGE/nginx:$APP_VERSION
+          --file ci/$ENV/build/nginx.Dockerfile
+          --cache-from $APP_IMAGE/nginx
+          --build-arg BUILDKIT_INLINE_CACHE
+          --build-arg CR_LABEL
           .
       - docker push -a $APP_IMAGE/nginx
 
@@ -156,6 +98,8 @@ phases:
       - cp ci/$ENV/appspec.yml $ARTIFACT_DIR/
       - cp -r ci/$ENV/hooks $ARTIFACT_DIR/
       - cp $SECRETS_LOADER $ARTIFACT_DIR/
+
+
 
 artifacts:
   files: ['./**/*']
