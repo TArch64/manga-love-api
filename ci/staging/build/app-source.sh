@@ -6,7 +6,7 @@ docker build \
   --tag "$APP_IMAGE/app-source:latest" \
   --tag "$APP_IMAGE/app-source:$APP_VERSION" \
   --file "ci/$ENV/build/app-source.Dockerfile" \
-  --cache-from "APP_IMAGE/app-node:latest" \
+  --cache-from "$APP_IMAGE/app-node:latest" \
   --cache-from "$APP_IMAGE/app-source:latest" \
   --build-arg BUILDKIT_INLINE_CACHE \
   --build-arg CR_LABEL \
