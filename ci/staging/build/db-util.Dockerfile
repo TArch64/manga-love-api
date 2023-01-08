@@ -21,6 +21,7 @@ LABEL org.opencontainers.image.source $CR_LABEL
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/libs/database/src/client ./dist/db-util/client
 COPY --from=builder /app/node_modules ./node_modules
 COPY ./prisma ./prisma
 COPY ./scripts ./scripts

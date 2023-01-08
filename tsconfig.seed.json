@@ -2,12 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": false,
-    "outDir": "dist/database",
-    "allowJs": true,
-    "checkJs": false,
-    "skipLibCheck": true
+    "outDir": "dist/db-util/seeds"
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["libs/database/src/client"],
   "files": ["libs/database/src/seeds/execute"]
 }
