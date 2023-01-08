@@ -2,6 +2,7 @@
 
 APP_NAME="$1";
 
+docker pull "$APP_IMAGE/$APP_NAME-builder:latest" || true;
 docker pull "$APP_IMAGE/$APP_NAME:latest" || true;
 
 docker build \
