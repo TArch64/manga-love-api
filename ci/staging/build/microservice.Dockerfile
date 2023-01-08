@@ -8,5 +8,4 @@ LABEL org.opencontainers.image.source $CR_LABEL
 
 WORKDIR /app
 
-RUN echo "APP_NAME: $APP_NAME"
 RUN npm run build:prod $APP_NAME
