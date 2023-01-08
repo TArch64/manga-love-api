@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-echo "Building app-node";
 echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "Building app-node";
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
 docker pull "$APP_IMAGE/app-node:latest" || true;
 
