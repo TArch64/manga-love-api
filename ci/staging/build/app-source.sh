@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "Building app-source";
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
 docker pull "$APP_IMAGE/app-source:latest" || true;
 
 docker build \

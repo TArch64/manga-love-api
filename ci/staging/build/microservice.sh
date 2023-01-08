@@ -2,6 +2,10 @@
 
 APP_NAME="$1";
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "Building microservice $APP_NAME";
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
 docker pull "$APP_IMAGE/$APP_NAME-builder:latest" || true;
 docker pull "$APP_IMAGE/$APP_NAME:latest" || true;
 

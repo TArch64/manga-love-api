@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "Building app-node";
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
 docker pull "$APP_IMAGE/app-node:latest" || true;
 
 docker build \

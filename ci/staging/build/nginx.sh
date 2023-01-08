@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+echo "Building nginx";
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+
 docker pull "$APP_IMAGE/nginx:latest" || true
 
 docker build \
