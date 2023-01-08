@@ -15,7 +15,7 @@ docker build \
   --target builder \
   --tag "$APP_IMAGE/db-util-builder:latest" \
   --tag "$APP_IMAGE/db-util-builder:$APP_VERSION" \
-  --file "ci/$ENV/build/microservice.Dockerfile" \
+  --file "ci/$ENV/build/db-util.Dockerfile" \
   --cache-from "$APP_IMAGE/app-node:$APP_VERSION" \
   --cache-from "$APP_IMAGE/app-source:$APP_VERSION" \
   --cache-from "$APP_IMAGE/db-util-builder:latest" \
@@ -29,7 +29,7 @@ docker push -a "$APP_IMAGE/db-util-builder" && \
 docker build \
   --tag "$APP_IMAGE/db-util:latest" \
   --tag "$APP_IMAGE/db-util:$APP_VERSION" \
-  --file "ci/$ENV/build/microservice.Dockerfile" \
+  --file "ci/$ENV/build/db-util.Dockerfile" \
   --cache-from "$APP_IMAGE/app-node:$APP_VERSION" \
   --cache-from "$APP_IMAGE/app-source:$APP_VERSION" \
   --cache-from "$APP_IMAGE/db-util-builder:$APP_VERSION" \
