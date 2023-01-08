@@ -1,7 +1,7 @@
 version: '3.8'
 
 x-api-common: &api_common
-  restart: always
+  restart: on-failure
   volumes:
     - data_tmp:/app/tmp
   networks:
@@ -17,7 +17,7 @@ services:
     image: ${APP_IMAGE}/nginx:${APP_VERSION}
     networks:
       - love
-    restart: always
+    restart: on-failure
     depends_on:
       - gateway
       - auth
@@ -68,12 +68,12 @@ services:
 
   db-util:
     <<: *api_common
-    restart: no
     image: ${APP_IMAGE}/db-util:${APP_VERSION}
     command: echo "success"
 
   postgres:
     image: postgres:15.1-alpine
+    restart: on-failure
     volumes:
       - data_psql:/var/lib/postgresql/data
     networks:
@@ -83,6 +83,7 @@ services:
 
   redis:
     image: redis:7.0.7-alpine
+    restart: on-failure
     volumes:
       - data_redis:/data
     networks:
