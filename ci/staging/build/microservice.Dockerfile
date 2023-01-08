@@ -8,7 +8,6 @@ LABEL org.opencontainers.image.source $CR_LABEL
 
 WORKDIR /app
 
-RUN echo "APP_NAME: $APP_NAME"
 RUN npm run build:prod $APP_NAME
 
 
@@ -17,7 +16,6 @@ ARG APP_VERSION
 FROM $APP_IMAGE/app-node:$APP_VERSION
 
 ARG CR_LABEL
-ARG APP_NAME
 LABEL org.opencontainers.image.source $CR_LABEL
 
 WORKDIR /app
