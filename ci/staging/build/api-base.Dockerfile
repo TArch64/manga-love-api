@@ -1,6 +1,5 @@
-ARG CR_LABEL
-
 FROM node:18-slim
+ARG CR_LABEL
 LABEL org.opencontainers.image.source $CR_LABEL
 
 WORKDIR /app
