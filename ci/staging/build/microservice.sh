@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APP_IMAGE="$1";
+APP_NAME="$1";
 
 docker pull "$APP_IMAGE/$APP_NAME:latest" || true;
 
@@ -18,6 +18,7 @@ docker build \
   --build-arg APP_IMAGE \
   --build-arg APP_VERSION \
   . && \
+docker push -a "$APP_IMAGE/$APP_NAME-builder" && \
 docker build \
   --tag "$APP_IMAGE/$APP_NAME:latest" \
   --tag "$APP_IMAGE/$APP_NAME:$APP_VERSION" \
@@ -32,5 +33,4 @@ docker build \
   --build-arg APP_IMAGE \
   --build-arg APP_VERSION \
   . && \
-docker push -a "$APP_IMAGE/$APP_NAME-builder" && \
 docker push -a "$APP_IMAGE/$APP_NAME";
