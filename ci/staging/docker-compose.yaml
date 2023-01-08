@@ -66,6 +66,11 @@ services:
     image: ${APP_IMAGE}/bull-admin:${APP_VERSION}
     command: node ./dist/apps/bull-admin/apps/bull-admin/src/main
 
+  db-util:
+    <<: *api_common
+    image: ${APP_IMAGE}/db-util:${APP_VERSION}
+    command: echo "success"
+
   postgres:
     image: postgres:15.1-alpine
     volumes:

@@ -37,7 +37,7 @@ phases:
       - ./ci/$ENV/build/microservice.sh "work"
       - ./ci/$ENV/build/microservice.sh "uploader"
       - ./ci/$ENV/build/microservice.sh "bull-admin"
-
+      - ./ci/$ENV/build/db-util.sh
 
   post_build:
     commands:

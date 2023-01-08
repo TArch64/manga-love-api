@@ -3,12 +3,12 @@ ARG APP_VERSION
 FROM $APP_IMAGE/app-source:$APP_VERSION as builder
 
 ARG CR_LABEL
-ARG APP_NAME
 LABEL org.opencontainers.image.source $CR_LABEL
 
 WORKDIR /app
 
-RUN npm run build:app $APP_NAME
+RUN npm run build:seed
+RUN npm run build:console
 
 
 ARG APP_IMAGE

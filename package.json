@@ -5,9 +5,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "start:dev": "nest start --watch --preserveWatchOutput",
-    "build:prod": "nest build",
+    "build:app": "nest build",
+    "build:seed": "tsc -P tsconfig.seed.json",
+    "build:console": "tsc -P tsconfig.console.json",
     "prisma": "prisma",
-    "console": "ts-node ./libs/database/src/console",
+    "console": "ts-node libs/database/src/console",
     "prepare": "husky install"
   },
   "prisma": {
