@@ -68,6 +68,7 @@ services:
 
   db-util:
     <<: *api_common
+    restart: no
     image: ${APP_IMAGE}/db-util:${APP_VERSION}
     command: echo "success"
 
