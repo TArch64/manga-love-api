@@ -20,6 +20,7 @@ docker build \
   --build-arg APP_VERSION \
   . && \
 docker push -a "$APP_IMAGE/$APP_NAME-builder" && \
+
 docker build \
   --tag "$APP_IMAGE/$APP_NAME:latest" \
   --tag "$APP_IMAGE/$APP_NAME:$APP_VERSION" \
