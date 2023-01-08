@@ -9,7 +9,7 @@ server {
     gzip off;
 
     location = /bull-admin {
-        return 302 /bull-admin/;
+        return 301 /bull-admin/;
     }
 
     location /bull-admin/ {
