@@ -8,12 +8,8 @@ server {
     root /app;
     gzip off;
 
-    location = /bull-admin {
-        return 301 /bull-admin/;
-    }
-
-    location /bull-admin/ {
-        proxy_pass http://bull-admin:3000/;
+    location /bull-admin {
+        proxy_pass http://bull-admin:3000;
     }
 
     location /static {
