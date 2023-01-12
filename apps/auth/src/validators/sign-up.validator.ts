@@ -24,6 +24,6 @@ export class SignUpValidator extends RpcValidator<ISignUpRequest> {
         const count = await this.prisma.user.count({
             where: { username: input.username },
         });
-        if (count > 0) this.reject('auth-email-used');
+        if (count > 0) this.reject('auth-username-used');
     }
 }
