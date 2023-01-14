@@ -29,6 +29,7 @@ type IllustrationObject {
 type Mutation {
   authSignIn(input: SignInInput!): AuthObject!
   authSignUp(input: SignUpInput!): AuthObject!
+  currentUserUpdate(input: UpdateUserInput!): UserObject!
   workCreate(input: CreateWorkInput!): WorkObject!
 }
 
@@ -55,6 +56,13 @@ input SignUpInput {
 The `UUID` scalar type represents UUID values as specified by [RFC 4122](https://tools.ietf.org/html/rfc4122).
 """
 scalar UUID
+
+input UpdateUserInput {
+  avatar: Upload
+  email: String
+  password: String
+  username: String
+}
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload

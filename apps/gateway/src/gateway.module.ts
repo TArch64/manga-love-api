@@ -10,7 +10,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { UploaderStorageModule } from '@manga-love-api/core/uploader-storage';
 import { WorkSortField } from '@manga-love-api/work/types';
 import { MicroservicesModule } from './gateway.microservices';
-import { UsersResolver } from './users';
+import { UsersResolver, UpdateUserService, UpdateUserValidator } from './users';
 import { AuthController, AuthGuard, AuthResolver } from './auth';
 import { WorkCategoriesResolver, WorksResolver } from './works';
 import { UploadReceiverService } from './common/services';
@@ -53,6 +53,8 @@ interface GraphqlContext {
         IllustrationResolver,
         WorkCategoriesResolver,
         UploadReceiverService,
+        UpdateUserService,
+        UpdateUserValidator,
         {
             provide: APP_GUARD,
             useClass: AuthGuard,

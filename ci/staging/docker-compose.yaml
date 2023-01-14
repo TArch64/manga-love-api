@@ -35,6 +35,7 @@ services:
     links:
       - auth
       - work
+      - uploader
 
   auth:
     <<: *api_common

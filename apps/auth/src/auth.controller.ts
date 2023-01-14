@@ -31,7 +31,7 @@ export class AuthController {
     }
 
     @MessagePattern(AuthCommand.SIGN_IN)
-    public async signIn(payload: ISignInRequest): Promise<IAuthResponse> {
+    public signIn(payload: ISignInRequest): Promise<IAuthResponse> {
         return this.signInService.signIn(payload);
     }
 
@@ -41,7 +41,13 @@ export class AuthController {
     }
 
     @MessagePattern(AuthCommand.AUTHENTICATE)
-    public async authenticate(token: string): Promise<User | null> {
+    public authenticate(token: string): Promise<User | null> {
         return this.authenticationService.authenticate(token);
+    }
+
+    @MessagePattern(AuthCommand.SEND_EMAIL_VERIFICATION)
+    public async sendEmailVerification(user: User): Promise<IStatusResponse> {
+        await this.verifyEmailService.send(user);
+        return { success: true };
     }
 }
