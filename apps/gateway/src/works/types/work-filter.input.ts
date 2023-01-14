@@ -1,18 +1,18 @@
+import { MaxLength, Min, MinLength } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 import { GraphQLInt } from 'graphql/type';
 import { IFilterWorksRequest, IFilterWorksSort } from '@manga-love-api/work/types';
-import { ConstraintValidator } from '../../common/decorators';
 import { GraphQLUUID } from '../../common/types';
 import { WorkFilterSortInput } from './work-filter-sort.input';
 
 @InputType()
 export class WorkFilterInput implements IFilterWorksRequest {
     @Field((returns) => GraphQLInt)
-    @ConstraintValidator({ min: 0 })
+    @Min(0)
     public offset: number;
 
     @Field((returns) => GraphQLInt)
-    @ConstraintValidator({ min: 1 })
+    @Min(1)
     public count: number;
 
     @Field((returns) => WorkFilterSortInput, {
@@ -21,7 +21,8 @@ export class WorkFilterInput implements IFilterWorksRequest {
     public sort: IFilterWorksSort;
 
     @Field({ nullable: true })
-    @ConstraintValidator({ minLength: 3, maxLength: 255 })
+    @MinLength(3)
+    @MaxLength(255)
     public text?: string;
 
     @Field((returns) => [GraphQLUUID], { nullable: true })

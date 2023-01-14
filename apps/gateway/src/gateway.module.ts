@@ -2,8 +2,6 @@ import process from 'process';
 import path from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule, registerEnumType } from '@nestjs/graphql';
-import { constraintDirective } from 'graphql-constraint-directive';
-import { constraintDirectiveTypeDefsObj } from 'graphql-constraint-directive/lib/type-defs';
 import { ApolloDriver } from '@nestjs/apollo';
 import { DatabaseModule, FieldSortOrder } from '@manga-love-api/database';
 import { Request, Response } from 'express';
@@ -37,13 +35,7 @@ interface GraphqlContext {
                 playground: false,
                 introspection: true,
                 context: ({ req, res }): GraphqlContext => ({ req, res }),
-                transformSchema: constraintDirective(),
-                buildSchemaOptions: {
-                    directives: [constraintDirectiveTypeDefsObj],
-                },
-                resolvers: {
-                    UUID: GraphQLUUID,
-                },
+                resolvers: { UUID: GraphQLUUID },
             }),
         }),
         EnvironmentModule,
