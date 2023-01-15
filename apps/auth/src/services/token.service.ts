@@ -15,6 +15,9 @@ export class TokenService {
     }
 
     public decodeSafe<TPayload extends object>(token: string): Promise<TPayload | null> {
-        return this.decode<TPayload>(token).catch(() => null);
+        return this.decode<TPayload>(token).catch((error) => {
+            console.log('error', error);
+            return null;
+        });
     }
 }

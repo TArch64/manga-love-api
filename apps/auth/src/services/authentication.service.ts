@@ -17,6 +17,8 @@ export class AuthenticationService {
     public async authenticate(token: string): Promise<User | null> {
         const payload = await this.tokenService.decodeSafe<IAuthenticationPayload>(token);
 
+        console.log('Payload', payload);
+
         const user = payload?.userId && await this.prisma.user.findUnique({
             where: { id: payload.userId },
         });
