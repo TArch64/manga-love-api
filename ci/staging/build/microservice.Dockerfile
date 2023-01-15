@@ -24,4 +24,5 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY ./prisma ./prisma
 COPY ./scripts ./scripts
+COPY ./static ./static
 COPY ./package.json ./package-lock.json ./
