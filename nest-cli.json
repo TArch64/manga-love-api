@@ -64,7 +64,10 @@
       "entryFile": "main",
       "sourceRoot": "apps/mailer/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/mailer/tsconfig.app.json"
+        "tsConfigPath": "apps/mailer/tsconfig.app.json",
+        "assets": [
+          "**/*.mjml"
+        ]
       }
     },
     "bull-admin": {
