@@ -20,11 +20,14 @@ export class VerifyEmailService {
     private environment: EnvironmentService;
 
     public async send(user: User): Promise<void> {
-        const action = await this.prisma.userAction.create({
-            data: {
-                userId: user.id,
-                type: UserActionType.VERIFY_EMAIL,
-            },
+        const data = {
+            userId: user.id,
+            type: UserActionType.VERIFY_EMAIL,
+        };
+        const action = await this.prisma.userAction.upsert({
+            where: { userId_type: data },
+            create: data,
+            update: {},
         });
         await this.sendEmail(user, action);
     }
