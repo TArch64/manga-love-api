@@ -11,11 +11,16 @@ export class TokenService {
     private environment: EnvironmentService;
 
     public encode<TPayload extends object>(payload: TPayload): Promise<string> {
-        return this.jwtService.signAsync(payload, { expiresIn: this.environment.jwt.expiration });
+        return this.jwtService.signAsync(payload, {
+            expiresIn: this.environment.jwt.expiration,
+            secret: this.environment.jwt.secret,
+        });
     }
 
     public decode<TPayload extends object>(token: string): Promise<TPayload> {
-        return this.jwtService.verifyAsync<TPayload>(token);
+        return this.jwtService.verifyAsync<TPayload>(token, {
+            secret: this.environment.jwt.secret,
+        });
     }
 
     public decodeSafe<TPayload extends object>(token: string): Promise<TPayload | null> {
