@@ -39,7 +39,6 @@ export class AuthGuard implements CanActivate {
 
     private authenticate(request: Request): Observable<User | null> {
         const token = request.headers.authorization;
-        console.log('Auth Token', token);
         return token ? this.authMicroservice.send<User>(AuthCommand.AUTHENTICATE, token) : of(null);
     }
 }
