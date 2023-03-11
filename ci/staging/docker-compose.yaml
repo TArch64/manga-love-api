@@ -15,6 +15,8 @@ x-api-common: &api_common
 services:
   nginx:
     image: ${APP_IMAGE}/nginx:${APP_VERSION}
+    volumes:
+      - ./certs:/app-certs
     networks:
       - love
     restart: on-failure
@@ -26,7 +28,7 @@ services:
       - uploader
       - bull-admin
     ports:
-      - '80:80'
+      - '443:443'
 
   gateway:
     <<: *api_common
