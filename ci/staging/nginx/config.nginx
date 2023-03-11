@@ -31,6 +31,7 @@ server {
 
     location = /schema.graphql {
         add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+        add_header Content-Type 'text/plain';
         alias /app/schema.graphql;
     }
 
