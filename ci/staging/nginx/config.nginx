@@ -27,6 +27,11 @@ server {
         return 404;
     }
 
+    location = /schema.graphql {
+        add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+        alias /app/schema.graphql;
+    }
+
     location / {
         proxy_pass http://gateway:3000;
     }
